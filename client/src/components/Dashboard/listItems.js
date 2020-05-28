@@ -11,46 +11,46 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 export const mainListItems = (
-    <div>
+    <div >
         <ListItem button>
             <ListItemIcon>
-                <DashboardIcon />
+                <DashboardIcon style={{ color: '#A5A4BF'}} />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-               <SearchIcon />
+               <SearchIcon style={{ color: '#A5A4BF'}} />
             </ListItemIcon>
             <ListItemText primary="Search" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <WorkIcon />
+                <WorkIcon style={{ color: '#A5A4BF'}} />
             </ListItemIcon>
             <ListItemText primary="Portfolio" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <VisibilityIcon />
+                <VisibilityIcon style={{ color: '#A5A4BF'}}/>
             </ListItemIcon>
             <ListItemText primary="WatchList" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <LayersIcon />
+                <LayersIcon style={{ color: '#A5A4BF'}}/>
             </ListItemIcon>
             <ListItemText primary="Options" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <AttachMoneyIcon />
+                <AttachMoneyIcon style={{ color: '#A5A4BF'}}/>
             </ListItemIcon>
             <ListItemText primary="Financials" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <SettingsIcon />
+                <SettingsIcon style={{ color: '#A5A4BF'}} />
             </ListItemIcon>
             <ListItemText primary="Settings" />
         </ListItem>

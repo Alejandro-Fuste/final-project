@@ -19,8 +19,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './listItems';
-import Chart from './Chart';
-import Deposits from './Deposits';
 import Orders from './Orders';
 import Avatar from '@material-ui/core/Avatar';
 import {TextField} from "@material-ui/core";
@@ -46,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     },
     toolbar: {
         paddingRight: 24, // keep right padding when drawer closed
+        color: '#A5A4BF',
     },
     toolbarIcon: {
         display: 'flex',
@@ -55,6 +54,8 @@ const useStyles = makeStyles((theme) => ({
         ...theme.mixins.toolbar,
     },
     appBar: {
+        backgroundColor: '#43425D',
+        color: '#A5A4BF',
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
@@ -74,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
     },
     menuButtonHidden: {
         display: 'none',
+        color: '#A5A4BF',
     },
     title: {
         flexGrow: 1,
@@ -81,6 +83,8 @@ const useStyles = makeStyles((theme) => ({
     drawerPaper: {
         position: 'relative',
         whiteSpace: 'nowrap',
+        color: '#fff',
+        backgroundColor: '#43425D',
         width: drawerWidth,
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
@@ -128,7 +132,7 @@ export default function Dashboard() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     return (
         <div className={classes.root}>
@@ -147,13 +151,12 @@ export default function Dashboard() {
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         zepcap
                     </Typography>
-                    <TextField id="outlined-basic" label="Outlined" variant="outlined" />
                     <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
+                        <Badge badgeContent={4} color="primary">
                             <NotificationsIcon />
                         </Badge>
                     </IconButton>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    <Avatar style={{ marginLeft: '15px' }}alt="Remy Sharp" src="https://randomuser.me/api/portraits/men/90.jpg" />
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -174,18 +177,15 @@ export default function Dashboard() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
+                    <Typography variant='h5' align='inherit' display='block'>
+                        Search for a Stock
+                    </Typography>
                     <Grid container spacing={3}>
                         {/* Chart */}
                         <Grid item xs={12} md={8} lg={9}>
-                            <Paper className={fixedHeightPaper}>
-                                <Chart />
-                            </Paper>
-                        </Grid>
-                        {/* Recent Deposits */}
-                        <Grid item xs={12} md={4} lg={3}>
-                            <Paper className={fixedHeightPaper}>
-                                <Deposits />
-                            </Paper>
+                           <TextField style={{ marginBottom: '30px' }} variant='standard' />
+
+                            <Typography variant='h4'>ARCA biopharma, Inc. (ABIO)</Typography>
                         </Grid>
                         {/* Recent Orders */}
                         <Grid item xs={12}>
