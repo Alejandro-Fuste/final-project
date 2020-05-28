@@ -3,7 +3,8 @@
 
 ## Description 
 
-The purpose of this project is to create an invest application. This application should have the ability to find financial statement, dividend, and options information of any publicly-traded company. With this information, a company can be given a grade based on their perfomance measurements/ratios. 
+The purpose of this project is to create an invest-analyzer application. This application should have the ability to find financial statement, dividend, and options information of any publicly-traded company. With this information, a company can be given a grade based on their perfomance measurements/ratios. The 
+will then be able to use this information to compare and contrast potential investments. 
 
 ## User Story
 
