@@ -3,6 +3,7 @@
 // Dependencies
 const path = require('path');
 // const db = require('../models');
+const yahooFinanceAPI = require('../libs/yahooFinanceAPI');
 
 module.exports = function(app) {
 	// Each of the below routes will do a different CRUD operation.
@@ -34,5 +35,16 @@ module.exports = function(app) {
 		// 	.catch((err) => {
 		// 		res.json(err);
 		// 	});
+	});
+
+	app.get('/api/summary', (req, res) => {
+		yahooFinanceAPI
+			.getSummary(req.query)
+			.then(({ data }) => {
+				return res.json(data);
+			})
+			.catch((err) => {
+				throw err;
+			});
 	});
 };
