@@ -24,7 +24,9 @@ import Avatar from '@material-ui/core/Avatar';
 import {TextField} from "@material-ui/core";
 
 import { Switch, Route } from 'react-router-dom';
+import Search from "../pages/Search";
 import Portfolio from "../pages/Portfolio";
+import Watchlist from "../pages/WatchList";
 
 function Copyright() {
     return (
@@ -184,8 +186,14 @@ export default function Dashboard() {
 
                 <Container maxWidth="lg" className={classes.container}>
                     <Switch>
-                        <Route exact path='/portfolio'>
+                        <Route path='/search'>
+                            <Search />
+                        </Route>
+                        <Route path='/portfolio'>
                             <Portfolio />
+                        </Route>
+                        <Route path='/watchlist'>
+                            <Watchlist />
                         </Route>
                     </Switch>
                     <Typography variant='h5' align='inherit' display='block'>
