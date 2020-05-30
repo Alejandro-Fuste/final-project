@@ -23,6 +23,9 @@ import Orders from './Orders';
 import Avatar from '@material-ui/core/Avatar';
 import {TextField} from "@material-ui/core";
 
+import { Switch, Route } from 'react-router-dom';
+import Portfolio from "../pages/Portfolio";
+
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -178,7 +181,13 @@ export default function Dashboard() {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
+
                 <Container maxWidth="lg" className={classes.container}>
+                    <Switch>
+                        <Route exact path='/portfolio'>
+                            <Portfolio />
+                        </Route>
+                    </Switch>
                     <Typography variant='h5' align='inherit' display='block'>
                         Search for a Stock
                     </Typography>

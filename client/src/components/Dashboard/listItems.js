@@ -10,14 +10,13 @@ import LayersIcon from '@material-ui/icons/Layers';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import Portfolio from '../pages/Portfolio';
+import { Link} from "react-router-dom";
 
 export default function MainListItems() {
    return  (
 
             <div>
-                <Router>
+
                 <ListItem button>
                     <ListItemIcon>
                         <DashboardIcon style={{color: '#A5A4BF'}}/>
@@ -60,12 +59,6 @@ export default function MainListItems() {
                     </ListItemIcon>
                     <ListItemText primary="Settings"/>
                 </ListItem>
-                    <Switch>
-                        <Route path='portfolio'>
-                            <Portfolio/>
-                        </Route>
-                    </Switch>
-                </Router>
             </div>
 
     );
