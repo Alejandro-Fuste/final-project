@@ -10,49 +10,64 @@ import LayersIcon from '@material-ui/icons/Layers';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-export const mainListItems = (
-    <div >
-        <ListItem button>
-            <ListItemIcon>
-                <DashboardIcon style={{ color: '#A5A4BF'}} />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-               <SearchIcon style={{ color: '#A5A4BF'}} />
-            </ListItemIcon>
-            <ListItemText primary="Search" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <WorkIcon style={{ color: '#A5A4BF'}} />
-            </ListItemIcon>
-            <ListItemText primary="Portfolio" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <VisibilityIcon style={{ color: '#A5A4BF'}}/>
-            </ListItemIcon>
-            <ListItemText primary="WatchList" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <LayersIcon style={{ color: '#A5A4BF'}}/>
-            </ListItemIcon>
-            <ListItemText primary="Options" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <AttachMoneyIcon style={{ color: '#A5A4BF'}}/>
-            </ListItemIcon>
-            <ListItemText primary="Financials" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <SettingsIcon style={{ color: '#A5A4BF'}} />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-        </ListItem>
-    </div>
-);
+import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import Portfolio from '../pages/Portfolio';
+
+export default function MainListItems() {
+   return  (
+
+            <div>
+                <Router>
+                <ListItem button>
+                    <ListItemIcon>
+                        <DashboardIcon style={{color: '#A5A4BF'}}/>
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard"/>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <SearchIcon style={{color: '#A5A4BF'}}/>
+                    </ListItemIcon>
+                    <ListItemText primary="Search"/>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <WorkIcon style={{color: '#A5A4BF'}}/>
+                    </ListItemIcon>
+                    <Link to='/portfolio'><ListItemText primary="Portfolio"/></Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <VisibilityIcon style={{color: '#A5A4BF'}}/>
+                    </ListItemIcon>
+                    <ListItemText primary="WatchList"/>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <LayersIcon style={{color: '#A5A4BF'}}/>
+                    </ListItemIcon>
+                    <ListItemText primary="Options"/>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <AttachMoneyIcon style={{color: '#A5A4BF'}}/>
+                    </ListItemIcon>
+                    <ListItemText primary="Financials"/>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <SettingsIcon style={{color: '#A5A4BF'}}/>
+                    </ListItemIcon>
+                    <ListItemText primary="Settings"/>
+                </ListItem>
+                    <Switch>
+                        <Route path='portfolio'>
+                            <Portfolio/>
+                        </Route>
+                    </Switch>
+                </Router>
+            </div>
+
+    );
+
+}
