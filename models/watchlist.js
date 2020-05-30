@@ -14,6 +14,10 @@ const watchlistSchema = new Schema({
 		type: String,
 		trim: true,
 		required: 'Enter the ticker symbol for the company'
+	},
+	grade: {
+		type: String,
+		trim: true
 	}
 });
 
