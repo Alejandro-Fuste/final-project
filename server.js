@@ -5,7 +5,7 @@ const path = require('path');
 const logger = require('morgan');
 
 // Requiring .dotenv file
-// require('dotenv').config();
+require('dotenv').config();
 
 //Setting up port
 const PORT = process.env.PORT || 3001;

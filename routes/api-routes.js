@@ -3,6 +3,7 @@
 // Dependencies
 const path = require('path');
 // const db = require('../models');
+const unirestAPI = require('../libs/unirestAPI');
 
 module.exports = function(app) {
 	// Each of the below routes will do a different CRUD operation.
@@ -34,5 +35,11 @@ module.exports = function(app) {
 		// 	.catch((err) => {
 		// 		res.json(err);
 		// 	});
+	});
+
+	app.get('/api/summary', (req, res) => {
+		unirestAPI.getSummary(req.query, (data) => {
+			return res.json(data);
+		});
 	});
 };
