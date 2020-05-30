@@ -183,7 +183,7 @@ export default function Dashboard() {
                     <Grid container spacing={3}>
                         {/* Chart */}
                         <Grid item xs={12} md={8} lg={9}>
-                           <TextField style={{ marginBottom: '30px' }} variant='standard' />
+                           <TextField style={{ margin: '15px 0px' }} variant='outlined' />
 
                             <Typography variant='h4'>ARCA biopharma, Inc. (ABIO)</Typography>
                         </Grid>
