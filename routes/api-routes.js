@@ -3,7 +3,7 @@
 // Dependencies
 const path = require('path');
 // const db = require('../models');
-const unirestAPI = require('../libs/unirestAPI');
+const yahooFinanceAPI = require('../libs/yahooFinanceAPI');
 
 module.exports = function(app) {
 	// Each of the below routes will do a different CRUD operation.
@@ -38,8 +38,13 @@ module.exports = function(app) {
 	});
 
 	app.get('/api/summary', (req, res) => {
-		unirestAPI.getSummary(req.query, (data) => {
-			return res.json(data);
-		});
+		yahooFinanceAPI
+			.getSummary(req.query)
+			.then(({ data }) => {
+				return res.json(data);
+			})
+			.catch((err) => {
+				throw err;
+			});
 	});
 };
