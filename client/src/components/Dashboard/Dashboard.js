@@ -18,10 +18,15 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems } from './listItems';
+import MainListItems  from './listItems';
 import Orders from './Orders';
 import Avatar from '@material-ui/core/Avatar';
 import {TextField} from "@material-ui/core";
+
+import { Switch, Route } from 'react-router-dom';
+import Search from "../pages/Search";
+import Portfolio from "../pages/Portfolio";
+import Watchlist from "../pages/WatchList";
 
 function Copyright() {
     return (
@@ -172,18 +177,32 @@ export default function Dashboard() {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>{mainListItems}</List>
+                <List>
+                    <MainListItems />
+                </List>
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
+
                 <Container maxWidth="lg" className={classes.container}>
+                    <Switch>
+                        <Route path='/search'>
+                            <Search />
+                        </Route>
+                        <Route path='/portfolio'>
+                            <Portfolio />
+                        </Route>
+                        <Route path='/watchlist'>
+                            <Watchlist />
+                        </Route>
+                    </Switch>
                     <Typography variant='h5' align='inherit' display='block'>
                         Search for a Stock
                     </Typography>
                     <Grid container spacing={3}>
                         {/* Chart */}
                         <Grid item xs={12} md={8} lg={9}>
-                           <TextField style={{ marginBottom: '30px' }} variant='standard' />
+                           <TextField style={{ margin: '15px 0px' }} variant='outlined' />
 
                             <Typography variant='h4'>ARCA biopharma, Inc. (ABIO)</Typography>
                         </Grid>
