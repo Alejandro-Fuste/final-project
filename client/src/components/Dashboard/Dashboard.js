@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -21,7 +21,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MainListItems  from './listItems';
 import Orders from './Orders';
 import Avatar from '@material-ui/core/Avatar';
-import {TextField} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
+import API from '../../utils/API';
 
 import { Switch, Route } from 'react-router-dom';
 import Search from "../pages/Search";
@@ -130,14 +131,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = useState(true);
+    const [ searchStock, setSearchStock ] = useState('AAPL');
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+    const handleSearchStock = (e) => {
+        e.preventDefault();
+        API.getStock(e.target.value)
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => console.log(err));
+    }
 
     return (
         <div className={classes.root}>
@@ -202,12 +213,28 @@ export default function Dashboard() {
                     <Grid container spacing={3}>
                         {/* Chart */}
                         <Grid item xs={12} md={8} lg={9}>
-                           <TextField style={{ margin: '15px 0px' }} variant='outlined' />
-
-                            <Typography variant='h4'>ARCA biopharma, Inc. (ABIO)</Typography>
+                           <form onSubmit={handleSearchStock}>
+                               <TextField
+                                   style={{ margin: '15px 0px' }}
+                                   variant='outlined'
+                               />
+                           </form>
                         </Grid>
                         {/* Recent Orders */}
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
+                            <Typography variant='h4'>Income Statement</Typography>
+                            <Paper className={classes.paper}>
+                                <Orders />
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Typography variant='h4'>Balance Sheet</Typography>
+                            <Paper className={classes.paper}>
+                                <Orders />
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Typography variant='h4'>Cash Flow Statement</Typography>
                             <Paper className={classes.paper}>
                                 <Orders />
                             </Paper>
