@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 export default {
-	// Gets all books
-	getBooks: function() {
-		return axios.get('/api/books');
+	getStock: function(ticker) {
+		return axios.get('/api/summary/?symbol=' + ticker );
 	},
 	// Gets the book with the given id
 	getBook: function(id) {
