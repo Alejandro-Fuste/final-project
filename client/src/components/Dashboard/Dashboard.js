@@ -19,7 +19,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MainListItems  from './listItems';
-import Orders from './Orders';
 import Avatar from '@material-ui/core/Avatar';
 import { TextField } from "@material-ui/core";
 import API from '../../utils/API';
@@ -143,6 +142,7 @@ export default function Dashboard() {
 
     const handleSearchStock = (e) => {
         e.preventDefault();
+
         API.getStock(e.target.value)
             .then(res => {
                 console.log(res.data);
@@ -211,32 +211,41 @@ export default function Dashboard() {
                         Search for a Stock
                     </Typography>
                     <Grid container spacing={3}>
-                        {/* Chart */}
                         <Grid item xs={12} md={8} lg={9}>
-                           <form onSubmit={handleSearchStock}>
+                           <form onSubmit={(e) => handleSearchStock(e)}>
                                <TextField
                                    style={{ margin: '15px 0px' }}
                                    variant='outlined'
                                />
                            </form>
                         </Grid>
-                        {/* Recent Orders */}
                         <Grid item xs={6}>
                             <Typography variant='h4'>Income Statement</Typography>
                             <Paper className={classes.paper}>
-                                <Orders />
+                                <h5>Year</h5>
+                                <h5>Revenue</h5>
+                                <h5>Gross Profit</h5>
+                                <h5>Operating Income</h5>
+                                <h5>Net Income</h5>
+                                <h5>Earning Per Share</h5>
                             </Paper>
                         </Grid>
                         <Grid item xs={6}>
                             <Typography variant='h4'>Balance Sheet</Typography>
                             <Paper className={classes.paper}>
-                                <Orders />
+                                <h5>Total Cas</h5>
+                                <h5>Total Debit</h5>
+                                <h5>Debt Equity</h5>
+                                <h5>Current Ratio</h5>
+                                <h5>Quick Ratio</h5>
+                                <h5>Return of Assets</h5>
                             </Paper>
                         </Grid>
                         <Grid item xs={6}>
                             <Typography variant='h4'>Cash Flow Statement</Typography>
                             <Paper className={classes.paper}>
-                                <Orders />
+                                <h5>Operating Cash Flow</h5>
+                                <h5>Free Cash Flow</h5>
                             </Paper>
                         </Grid>
                     </Grid>
