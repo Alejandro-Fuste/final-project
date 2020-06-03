@@ -221,7 +221,7 @@ export default function Dashboard() {
 						{/* Chart */}
 						<Grid item xs={12} md={8} lg={9}>
 							<form onSubmit={handleSearchStock}>
-								<TextField style={{ margin: '15px 0px' }} variant="outlined" ref={searchRef} />
+								<TextField style={{ margin: '15px 0px' }} variant="outlined" inputRef={searchRef} />
 
 								<Typography variant="h4">ARCA biopharma, Inc. (ABIO)</Typography>
 							</form>
