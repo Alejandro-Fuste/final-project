@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,10 +18,10 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import MainListItems from './listItems';
-import Orders from './Orders';
+
+import MainListItems  from './listItems';
 import Avatar from '@material-ui/core/Avatar';
-import { TextField } from '@material-ui/core';
+import { TextField } from "@material-ui/core";
 
 import { Switch, Route } from 'react-router-dom';
 import Search from '../pages/Search';
@@ -130,17 +130,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard() {
+
+    const classes = useStyles();
+    const [open, setOpen] = useState(true);
+    const [ searchStock, setSearchStock ] = useState('AAPL');
 	const searchRef = useRef();
 
-	const classes = useStyles();
-	const [ open, setOpen ] = React.useState(true);
-	const handleDrawerOpen = () => {
-		setOpen(true);
-	};
-	const handleDrawerClose = () => {
-		setOpen(false);
-	};
-	// const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
 
 	const handleSearchStock = (e) => {
 		e.preventDefault();
@@ -152,6 +153,8 @@ export default function Dashboard() {
 			})
 			.catch((err) => console.log(err));
 	};
+
+
 
 	return (
 		<div className={classes.root}>
@@ -218,7 +221,6 @@ export default function Dashboard() {
 						Search for a Stock
 					</Typography>
 					<Grid container spacing={3}>
-						{/* Chart */}
 						<Grid item xs={12} md={8} lg={9}>
 							<form onSubmit={handleSearchStock}>
 								<TextField style={{ margin: '15px 0px' }} variant="outlined" inputRef={searchRef} />
@@ -226,10 +228,34 @@ export default function Dashboard() {
 								<Typography variant="h4">ARCA biopharma, Inc. (ABIO)</Typography>
 							</form>
 						</Grid>
-						{/* Recent Orders */}
-						<Grid item xs={12}>
+
+						<Grid item xs={6}>
+							<Typography variant='h4'>Income Statement</Typography>
 							<Paper className={classes.paper}>
-								<Orders />
+								<h5>Year</h5>
+								<h5>Revenue</h5>
+								<h5>Gross Profit</h5>
+								<h5>Operating Income</h5>
+								<h5>Net Income</h5>
+								<h5>Earning Per Share</h5>
+							</Paper>
+						</Grid>
+						<Grid item xs={6}>
+							<Typography variant='h4'>Balance Sheet</Typography>
+							<Paper className={classes.paper}>
+								<h5>Total Cas</h5>
+								<h5>Total Debit</h5>
+								<h5>Debt Equity</h5>
+								<h5>Current Ratio</h5>
+								<h5>Quick Ratio</h5>
+								<h5>Return of Assets</h5>
+							</Paper>
+						</Grid>
+						<Grid item xs={6}>
+							<Typography variant='h4'>Cash Flow Statement</Typography>
+							<Paper className={classes.paper}>
+								<h5>Operating Cash Flow</h5>
+								<h5>Free Cash Flow</h5>
 							</Paper>
 						</Grid>
 					</Grid>

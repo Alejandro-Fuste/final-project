@@ -37,7 +37,7 @@ module.exports = function(app) {
 		// 	});
 	});
 
-	app.get('/api/summary/?symbol=', (req, res) => {
+	app.get('/api/summary', (req, res) => {
 		yahooFinanceAPI
 			.getSummary(req.query)
 			.then(({ data }) => {
