@@ -134,6 +134,7 @@ export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = useState(true);
     const [ searchStock, setSearchStock ] = useState('AAPL');
+	const searchRef = useRef();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -153,7 +154,7 @@ export default function Dashboard() {
 			.catch((err) => console.log(err));
 	};
 
-	const searchRef = useRef();
+
 
 	return (
 		<div className={classes.root}>
