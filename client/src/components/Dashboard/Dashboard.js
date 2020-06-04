@@ -133,7 +133,7 @@ export default function Dashboard() {
 
     const classes = useStyles();
     const [open, setOpen] = useState(true);
-    const [ searchStock, setSearchStock ] = useState('AAPL');
+    const [ searchStock, setSearchStock ] = useState();
 	const searchRef = useRef();
 
     const handleDrawerOpen = () => {
@@ -150,11 +150,15 @@ export default function Dashboard() {
 		})
 			.then((res) => {
 				console.log(res.data);
+				let data = {
+					year: res.data.earnings.financialsChart.yearly[3].date
+
+			}
+				setSearchStock(data);
+				console.log(searchStock);
 			})
 			.catch((err) => console.log(err));
 	};
-
-
 
 	return (
 		<div className={classes.root}>
@@ -228,36 +232,39 @@ export default function Dashboard() {
 								<Typography variant="h4">ARCA biopharma, Inc. (ABIO)</Typography>
 							</form>
 						</Grid>
-
-						<Grid item xs={6}>
-							<Typography variant='h4'>Income Statement</Typography>
-							<Paper className={classes.paper}>
-								<h5>Year</h5>
-								<h5>Revenue</h5>
-								<h5>Gross Profit</h5>
-								<h5>Operating Income</h5>
-								<h5>Net Income</h5>
-								<h5>Earning Per Share</h5>
-							</Paper>
-						</Grid>
-						<Grid item xs={6}>
-							<Typography variant='h4'>Balance Sheet</Typography>
-							<Paper className={classes.paper}>
+						{!searchStock ? <p>Something</p> :
+							<>
+							<Grid item xs={6}>
+								<Typography variant='h4'>Income Statement</Typography>
+								<Paper className={classes.paper}>
+									<h5>{searchStock.year}</h5>
+									<h5></h5>
+									<h5>Gross Profit</h5>
+									<h5>Operating Income</h5>
+									<h5>Net Income</h5>
+									<h5>Earning Per Share</h5>
+								</Paper>
+							</Grid>
+							<Grid item xs={6}>
+								<Typography variant='h4'>Balance Sheet</Typography>
+								<Paper className={classes.paper}>
 								<h5>Total Cas</h5>
 								<h5>Total Debit</h5>
 								<h5>Debt Equity</h5>
 								<h5>Current Ratio</h5>
 								<h5>Quick Ratio</h5>
 								<h5>Return of Assets</h5>
-							</Paper>
-						</Grid>
-						<Grid item xs={6}>
-							<Typography variant='h4'>Cash Flow Statement</Typography>
-							<Paper className={classes.paper}>
+								</Paper>
+							</Grid>
+							<Grid item xs={6}>
+								<Typography variant='h4'>Cash Flow Statement</Typography>
+								<Paper className={classes.paper}>
 								<h5>Operating Cash Flow</h5>
 								<h5>Free Cash Flow</h5>
-							</Paper>
-						</Grid>
+								</Paper>
+							</Grid>
+							</>
+						}
 					</Grid>
 					<Box pt={4}>
 						<Copyright />
