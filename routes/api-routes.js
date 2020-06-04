@@ -2,7 +2,7 @@
 
 // Dependencies
 const path = require('path');
-// const db = require('../models');
+const db = require('../models');
 const yahooFinanceAPI = require('../libs/yahooFinanceAPI');
 
 module.exports = function(app) {
@@ -10,33 +10,54 @@ module.exports = function(app) {
 
 	// GET route to get user and their watchlist
 	app.get('/api/user', (req, res) => {
-		res.send('API user route');
+		db.User
+			.find({})
+			.populate('Watchlist')
+			.then((data) => {
+				res.json(data);
+			})
+			.catch((err) => {
+				res.json(err);
+			});
+	});
 
-		// db.User
-		// 	.find({})
-		// 	.populate('Watchlist')
-		// 	.then((data) => {
-		// 		res.json(data);
-		// 	})
-		// 	.catch((err) => {
-		// 		res.json(err);
-		// 	});
+	app.get('/api/watchlist', (req, res) => {
+		db.Watchlist
+			.find({})
+			.then((data) => {
+				res.json(data);
+			})
+			.catch((err) => {
+				res.json(err);
+			});
 	});
 
 	// POST route to add stock to watchlist
-	app.post('/api/watchlist', (req, res) => {
-		res.send('API watchlist page');
-
-		// db.Watchlist
-		// 	.create({})
-		// 	.then((data) => {
-		// 		res.json(data);
-		// 	})
-		// 	.catch((err) => {
-		// 		res.json(err);
-		// 	});
+	app.post('/api/watchlist', ({ body }, res) => {
+		console.log(body);
+		db.Watchlist
+			.create(body)
+			.then((data) => {
+				res.json(data);
+			})
+			.catch((err) => {
+				res.status(422).json(err);
+			});
 	});
 
+	// Delete route to remove stock from watchlist
+	app.delete('/api/watchlist/:id', (req, res) => {
+		db.Watchlist
+			.deleteOne({ _id: req.params.id })
+			.then((data) => {
+				res.json(data);
+			})
+			.catch((err) => {
+				res.json(err);
+			});
+	});
+
+	// Get summary quote from Yahoo Finance API
 	app.get('/api/summary', (req, res) => {
 		yahooFinanceAPI
 			.getSummary(req.query)
