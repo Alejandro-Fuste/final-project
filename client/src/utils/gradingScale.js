@@ -145,7 +145,7 @@ export default {
 			return 'Can not calculate value';
 		}
 	},
-	finalGrade: function(value) {
+	finalGrade: function(allThings) {
 		if (value >= 3.7 && value <= 4.0) {
 			return 'A';
 		} else if (value >= 3.0 && value <= 3.6) {

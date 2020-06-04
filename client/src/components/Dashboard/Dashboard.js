@@ -19,9 +19,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-import MainListItems  from './listItems';
+import MainListItems from './listItems';
 import Avatar from '@material-ui/core/Avatar';
-import { TextField } from "@material-ui/core";
+import { TextField } from '@material-ui/core';
 
 import { Switch, Route } from 'react-router-dom';
 import Search from '../pages/Search';
@@ -136,12 +136,12 @@ export default function Dashboard() {
     const [ searchStock, setSearchStock ] = useState();
 	const searchRef = useRef();
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+	const handleDrawerClose = () => {
+		setOpen(false);
+	};
 
 	const handleSearchStock = (e) => {
 		e.preventDefault();
@@ -234,35 +234,35 @@ export default function Dashboard() {
 						</Grid>
 						{!searchStock ? <p>Something</p> :
 							<>
-							<Grid item xs={6}>
-								<Typography variant='h4'>Income Statement</Typography>
-								<Paper className={classes.paper}>
-									<h5>{searchStock.year}</h5>
-									<h5></h5>
-									<h5>Gross Profit</h5>
-									<h5>Operating Income</h5>
-									<h5>Net Income</h5>
-									<h5>Earning Per Share</h5>
-								</Paper>
-							</Grid>
-							<Grid item xs={6}>
-								<Typography variant='h4'>Balance Sheet</Typography>
-								<Paper className={classes.paper}>
-								<h5>Total Cas</h5>
-								<h5>Total Debit</h5>
-								<h5>Debt Equity</h5>
-								<h5>Current Ratio</h5>
-								<h5>Quick Ratio</h5>
-								<h5>Return of Assets</h5>
-								</Paper>
-							</Grid>
-							<Grid item xs={6}>
-								<Typography variant='h4'>Cash Flow Statement</Typography>
-								<Paper className={classes.paper}>
-								<h5>Operating Cash Flow</h5>
-								<h5>Free Cash Flow</h5>
-								</Paper>
-							</Grid>
+								<Grid item xs={6}>
+									<Typography variant='h4'>Income Statement</Typography>
+									<Paper className={classes.paper}>
+										<h5>{searchStock.year}</h5>
+										<h5></h5>
+										<h5>Gross Profit</h5>
+										<h5>Operating Income</h5>
+										<h5>Net Income</h5>
+										<h5>Earning Per Share</h5>
+									</Paper>
+								</Grid>
+								<Grid item xs={6}>
+									<Typography variant='h4'>Balance Sheet</Typography>
+									<Paper className={classes.paper}>
+										<h5>Total Cas</h5>
+										<h5>Total Debit</h5>
+										<h5>Debt Equity</h5>
+										<h5>Current Ratio</h5>
+										<h5>Quick Ratio</h5>
+										<h5>Return of Assets</h5>
+									</Paper>
+								</Grid>
+								<Grid item xs={6}>
+									<Typography variant='h4'>Cash Flow Statement</Typography>
+									<Paper className={classes.paper}>
+										<h5>Operating Cash Flow</h5>
+										<h5>Free Cash Flow</h5>
+									</Paper>
+								</Grid>
 							</>
 						}
 					</Grid>
