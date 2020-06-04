@@ -19,9 +19,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-import MainListItems  from './listItems';
+import MainListItems from './listItems';
 import Avatar from '@material-ui/core/Avatar';
-import { TextField } from "@material-ui/core";
+import { TextField } from '@material-ui/core';
 
 import { Switch, Route } from 'react-router-dom';
 import Search from '../pages/Search';
@@ -130,18 +130,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard() {
-
-    const classes = useStyles();
-    const [open, setOpen] = useState(true);
-    const [ searchStock, setSearchStock ] = useState('AAPL');
+	const classes = useStyles();
+	const [ open, setOpen ] = useState(true);
+	const [ searchStock, setSearchStock ] = useState('AAPL');
 	const searchRef = useRef();
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+	const handleDrawerClose = () => {
+		setOpen(false);
+	};
 
 	const handleSearchStock = (e) => {
 		e.preventDefault();
@@ -153,8 +152,6 @@ export default function Dashboard() {
 			})
 			.catch((err) => console.log(err));
 	};
-
-
 
 	return (
 		<div className={classes.root}>
@@ -230,7 +227,7 @@ export default function Dashboard() {
 						</Grid>
 
 						<Grid item xs={6}>
-							<Typography variant='h4'>Income Statement</Typography>
+							<Typography variant="h4">Income Statement</Typography>
 							<Paper className={classes.paper}>
 								<h5>Year</h5>
 								<h5>Revenue</h5>
@@ -241,7 +238,7 @@ export default function Dashboard() {
 							</Paper>
 						</Grid>
 						<Grid item xs={6}>
-							<Typography variant='h4'>Balance Sheet</Typography>
+							<Typography variant="h4">Balance Sheet</Typography>
 							<Paper className={classes.paper}>
 								<h5>Total Cas</h5>
 								<h5>Total Debit</h5>
@@ -252,7 +249,7 @@ export default function Dashboard() {
 							</Paper>
 						</Grid>
 						<Grid item xs={6}>
-							<Typography variant='h4'>Cash Flow Statement</Typography>
+							<Typography variant="h4">Cash Flow Statement</Typography>
 							<Paper className={classes.paper}>
 								<h5>Operating Cash Flow</h5>
 								<h5>Free Cash Flow</h5>
