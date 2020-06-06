@@ -130,9 +130,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard() {
-	const classes = useStyles();
-	const [ open, setOpen ] = useState(true);
-	const [ searchStock, setSearchStock ] = useState('AAPL');
+
+    const classes = useStyles();
+    const [open, setOpen] = useState(true);
+    const [ searchStock, setSearchStock ] = useState();
 	const searchRef = useRef();
 
 	const handleDrawerOpen = () => {
@@ -149,6 +150,26 @@ export default function Dashboard() {
 		})
 			.then((res) => {
 				console.log(res.data);
+				let data = {
+					year: res.data.earnings.financialsChart.yearly[3].date,
+					revenue: res.data.earnings.financialsChart.yearly[3].revenue.fmt,
+					grossProfit: res.data.financialData.grossMargins.fmt,
+					operatingIncome: res.data.financialData.profitMargins.fmt,
+					netIncome: res.data.earnings.financialsChart.yearly[3].earnings.fmt,
+					netIncomeProfitMargin: res.data.financialData.profitMargins.fmt,
+					earningsPerShare: res.data.defaultKeyStatistics.trailingEps.fmt,
+					totalCash: res.data.financialData.totalCash.fmt,
+					totalDebit: res.data.financialData.totalDebt.fmt,
+					debtToEquity: res.data.financialData.debtToEquity.fmt,
+					currentRatio: res.data.financialData.currentRatio.fmt,
+					quickRatio: res.data.financialData.quickRatio.fmt,
+					returnOnAssets: res.data.financialData.returnOnAssets.fmt,
+					returnOnEquity: res.data.financialData.returnOnEquity.fmt,
+					operatingCashFlow: res.data.financialData.operatingCashflow.fmt,
+					freeCashFlow: res.data.financialData.freeCashflow.fmt
+				}
+				setSearchStock(data);
+				console.log(searchStock);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -225,36 +246,41 @@ export default function Dashboard() {
 								<Typography variant="h4">ARCA biopharma, Inc. (ABIO)</Typography>
 							</form>
 						</Grid>
-
-						<Grid item xs={6}>
-							<Typography variant="h4">Income Statement</Typography>
-							<Paper className={classes.paper}>
-								<h5>Year</h5>
-								<h5>Revenue</h5>
-								<h5>Gross Profit</h5>
-								<h5>Operating Income</h5>
-								<h5>Net Income</h5>
-								<h5>Earning Per Share</h5>
-							</Paper>
-						</Grid>
-						<Grid item xs={6}>
-							<Typography variant="h4">Balance Sheet</Typography>
-							<Paper className={classes.paper}>
-								<h5>Total Cas</h5>
-								<h5>Total Debit</h5>
-								<h5>Debt Equity</h5>
-								<h5>Current Ratio</h5>
-								<h5>Quick Ratio</h5>
-								<h5>Return of Assets</h5>
-							</Paper>
-						</Grid>
-						<Grid item xs={6}>
-							<Typography variant="h4">Cash Flow Statement</Typography>
-							<Paper className={classes.paper}>
-								<h5>Operating Cash Flow</h5>
-								<h5>Free Cash Flow</h5>
-							</Paper>
-						</Grid>
+						{!searchStock ? <p>Something</p> :
+							<>
+								<Grid item xs={6}>
+									<Typography variant='h4'>Income Statement</Typography>
+									<Paper className={classes.paper}>
+										<h5>{searchStock.year}</h5>
+										<h5>{searchStock.revenue}</h5>
+										<h5>{searchStock.grossProfit}</h5>
+										<h5>{searchStock.operatingIncome}</h5>
+										<h5>{searchStock.netIncome}</h5>
+										<h5>{searchStock.netIncomeProfitMargin}</h5>
+										<h5>{searchStock.earningsPerShare}</h5>
+									</Paper>
+								</Grid>
+								<Grid item xs={6}>
+									<Typography variant='h4'>Balance Sheet</Typography>
+									<Paper className={classes.paper}>
+										<h5>{searchStock.totalCash}</h5>
+										<h5>{searchStock.totalDebit}</h5>
+										<h5>{searchStock.debtToEquity}</h5>
+										<h5>{searchStock.currentRatio}</h5>
+										<h5>{searchStock.quickRatio}</h5>
+										<h5>{searchStock.returnOnAssets}</h5>
+										<h5>{searchStock.returnOnEquity}</h5>
+									</Paper>
+								</Grid>
+								<Grid item xs={6}>
+									<Typography variant='h4'>Cash Flow Statement</Typography>
+									<Paper className={classes.paper}>
+										<h5>{searchStock.operatingCashFlow}</h5>
+										<h5>{searchStock.freeCashFlow}</h5>
+									</Paper>
+								</Grid>
+							</>
+						}
 					</Grid>
 					<Box pt={4}>
 						<Copyright />
