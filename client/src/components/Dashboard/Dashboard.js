@@ -132,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
 
     const classes = useStyles();
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [ searchStock, setSearchStock ] = useState();
 	const searchRef = useRef();
 
@@ -243,7 +243,7 @@ export default function Dashboard() {
 							<form onSubmit={handleSearchStock}>
 								<TextField style={{ margin: '15px 0px' }} variant="outlined" inputRef={searchRef} />
 
-								<Typography variant="h4">ARCA biopharma, Inc. (ABIO)</Typography>
+								<Typography variant="h4"></Typography>
 							</form>
 						</Grid>
 						{!searchStock ? <p>Something</p> :
@@ -251,13 +251,13 @@ export default function Dashboard() {
 								<Grid item xs={6}>
 									<Typography variant='h4'>Income Statement</Typography>
 									<Paper className={classes.paper}>
-										<h5>{searchStock.year}</h5>
-										<h5>{searchStock.revenue}</h5>
-										<h5>{searchStock.grossProfit}</h5>
-										<h5>{searchStock.operatingIncome}</h5>
-										<h5>{searchStock.netIncome}</h5>
-										<h5>{searchStock.netIncomeProfitMargin}</h5>
-										<h5>{searchStock.earningsPerShare}</h5>
+										<h5>Year: {searchStock.year}</h5>
+										<h5>Revenue: {searchStock.revenue}</h5>
+										<h5>Gross Profit: {searchStock.grossProfit}</h5>
+										<h5>Operating Income: {searchStock.operatingIncome}</h5>
+										<h5>Net Income: {searchStock.netIncome}</h5>
+										<h5>Net Income Profit Margin: {searchStock.netIncomeProfitMargin}</h5>
+										<h5>Earnings Per Share: {searchStock.earningsPerShare}</h5>
 									</Paper>
 								</Grid>
 								<Grid item xs={6}>
