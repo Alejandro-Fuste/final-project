@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -143,14 +143,45 @@ export default function Dashboard() {
 		setOpen(false);
 	};
 
+	useEffect(() => {
+		API.getStock({
+			ticker: 'AAPL'
+		}).then(res => {
+			let data = {
+				name: res.data.quoteType.shortName,
+				symbol: res.data.symbol,
+				year: res.data.earnings.financialsChart.yearly[3].date,
+				revenue: res.data.earnings.financialsChart.yearly[3].revenue.fmt,
+				grossProfit: res.data.financialData.grossMargins.fmt,
+				operatingIncome: res.data.financialData.profitMargins.fmt,
+				netIncome: res.data.earnings.financialsChart.yearly[3].earnings.fmt,
+				netIncomeProfitMargin: res.data.financialData.profitMargins.fmt,
+				earningsPerShare: res.data.defaultKeyStatistics.trailingEps.fmt,
+				totalCash: res.data.financialData.totalCash.fmt,
+				totalDebit: res.data.financialData.totalDebt.fmt,
+				debtToEquity: res.data.financialData.debtToEquity.fmt,
+				currentRatio: res.data.financialData.currentRatio.fmt,
+				quickRatio: res.data.financialData.quickRatio.fmt,
+				returnOnAssets: res.data.financialData.returnOnAssets.fmt,
+				returnOnEquity: res.data.financialData.returnOnEquity.fmt,
+				operatingCashFlow: res.data.financialData.operatingCashflow.fmt,
+				freeCashFlow: res.data.financialData.freeCashflow.fmt
+			}
+			setSearchStock(data);
+		}).catch(err => console.log(err));
+	}, [])
+
 	const handleSearchStock = (e) => {
 		e.preventDefault();
 		API.getStock({
-			ticker: searchRef.current.value
+			ticker: searchRef.current.value.toUpperCase()
 		})
 			.then((res) => {
 				console.log(res.data);
+				setSearchStock(null);
 				let data = {
+					name: res.data.quoteType.shortName,
+					symbol: res.data.symbol,
 					year: res.data.earnings.financialsChart.yearly[3].date,
 					revenue: res.data.earnings.financialsChart.yearly[3].revenue.fmt,
 					grossProfit: res.data.financialData.grossMargins.fmt,
@@ -242,13 +273,12 @@ export default function Dashboard() {
 						<Grid item xs={12} md={8} lg={9}>
 							<form onSubmit={handleSearchStock}>
 								<TextField style={{ margin: '15px 0px' }} variant="outlined" inputRef={searchRef} />
-
-								<Typography variant="h4"></Typography>
 							</form>
 						</Grid>
 						{!searchStock ? <p>Something</p> :
 							<>
 								<Grid item xs={6}>
+									<Typography variant="h4">{searchStock.name} {searchStock.symbol}</Typography>
 									<Typography variant='h4'>Income Statement</Typography>
 									<Paper className={classes.paper}>
 										<h5>Year: {searchStock.year}</h5>
@@ -263,20 +293,20 @@ export default function Dashboard() {
 								<Grid item xs={6}>
 									<Typography variant='h4'>Balance Sheet</Typography>
 									<Paper className={classes.paper}>
-										<h5>{searchStock.totalCash}</h5>
-										<h5>{searchStock.totalDebit}</h5>
-										<h5>{searchStock.debtToEquity}</h5>
-										<h5>{searchStock.currentRatio}</h5>
-										<h5>{searchStock.quickRatio}</h5>
-										<h5>{searchStock.returnOnAssets}</h5>
-										<h5>{searchStock.returnOnEquity}</h5>
+										<h5>Total Cash: {searchStock.totalCash}</h5>
+										<h5>Total Debit: {searchStock.totalDebit}</h5>
+										<h5>Debt/Equity: {searchStock.debtToEquity}</h5>
+										<h5>Current Ratio: {searchStock.currentRatio}</h5>
+										<h5>Quick Ratio: {searchStock.quickRatio}</h5>
+										<h5>Return on Assets: {searchStock.returnOnAssets}</h5>
+										<h5>Return on Equity: {searchStock.returnOnEquity}</h5>
 									</Paper>
 								</Grid>
 								<Grid item xs={6}>
 									<Typography variant='h4'>Cash Flow Statement</Typography>
 									<Paper className={classes.paper}>
-										<h5>{searchStock.operatingCashFlow}</h5>
-										<h5>{searchStock.freeCashFlow}</h5>
+										<h5>Operating Cash Flow{searchStock.operatingCashFlow}</h5>
+										<h5>Free Cash Flow{searchStock.freeCashFlow}</h5>
 									</Paper>
 								</Grid>
 							</>
