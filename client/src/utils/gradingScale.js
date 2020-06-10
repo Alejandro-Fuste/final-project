@@ -229,7 +229,3 @@ export default {
 		}
 	}
 };
-
-// GPA: function(arr) {
-// 	arr.map(item => item.value).reduce((a,b) => (a + b)/arr.length)
-// },
