@@ -282,6 +282,7 @@ export default function Dashboard() {
 									</Typography>
 									<form onSubmit={handleSearchStock}>
 										<OutlinedInput
+											inputRef={searchRef}
 											endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
 											style={{ margin: '20px 0px'}}
 										/>
@@ -290,13 +291,14 @@ export default function Dashboard() {
 								<Grid item xs={12} md={3}>
 									<Typography style={{ alignSelf: 'center' }} variant="h4">
 										{searchStock.name} "{searchStock.symbol}"
+										<Button
+											className={classes.color}
+											variant="contained"
+											endIcon={<WorkIcon />}> Add to Watchlist</Button>
 									</Typography>
 								</Grid>
 								<Grid item xs={12} md={3}>
-									<Button
-										className={classes.color}
-										variant="contained"
-										endIcon={<WorkIcon />}> Add to Watchlist</Button>
+
 								</Grid>
 								<Grid item lg={6} xs={12}>
 									<Typography variant='h4'>Income Statement</Typography>
