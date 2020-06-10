@@ -64,13 +64,13 @@ export default {
 	netIncome: function(value) {
 		if (value >= 0.18) {
 			return { ...GRADE_A };
-		} else if (value >= 0.15 && value <= 0.17) {
+		} else if (value >= 0.15 && value <= 0.17999) {
 			return { ...GRADE_B };
-		} else if (value >= 0.12 && value <= 0.14) {
+		} else if (value >= 0.12 && value <= 0.14999) {
 			return { ...GRADE_C };
-		} else if (value >= 0.09 && value <= 0.11) {
+		} else if (value >= 0.09 && value <= 0.11999) {
 			return { ...GRADE_D };
-		} else if (value <= 0.08) {
+		} else if (value <= 0.08999) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -115,7 +115,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 106000000001 && value <= 126000000000) {
 			return { ...GRADE_D };
-		} else if (value <= 126000000001) {
+		} else if (value >= 126000000001) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
