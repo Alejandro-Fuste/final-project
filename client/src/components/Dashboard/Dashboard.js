@@ -241,12 +241,11 @@ export default function Dashboard() {
 				];
 				gData.forEach((item, i) => {
 					item.letterGrade = GradingScale[item.property](item.value);
-					console.log(i, item.property);
 				});
 
 				setSearchStock(data);
-				setGradeData(gData);
 				console.log(gData);
+				setGradeData(gData);
 				console.log('Grade Data:');
 				console.log(gradeData);
 			})
