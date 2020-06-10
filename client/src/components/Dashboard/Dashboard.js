@@ -243,21 +243,17 @@ export default function Dashboard() {
 					item.letterGrade = GradingScale[item.property](item.value);
 				});
 
+				const finalG = GradingScale.finalGrade(gData);
+
 				setSearchStock(data);
 				console.log(gData);
 				setGradeData(gData);
+				console.log(`GPA: ${finalG}`);
 				console.log('Grade Data:');
 				console.log(gradeData);
 			})
 			.catch((err) => console.log(err));
 	};
-
-	// const withletterGrades = () => {
-	// 	gradeData.map((item) => {
-	// 		item.letterGrade = GradingScale[item.property](item.value);
-	// 		return item;
-	// 	});
-	// };
 
 	return (
 		<div className={classes.root}>

@@ -210,20 +210,26 @@ export default {
 		} else {
 			return 'Can not calculate value';
 		}
+	},
+	finalGrade: function(arr) {
+		let value = arr.map((item) => item.letterGrade.value).reduce((a, b) => (a + b) / arr.length);
+		console.log(value);
+		if (value >= 0.37 && value <= 0.4) {
+			return 'A';
+		} else if (value >= 0.3 && value <= 0.36) {
+			return 'B';
+		} else if (value >= 0.2 && value <= 0.29) {
+			return 'C';
+		} else if (value >= 0.1 && value <= 0.19) {
+			return 'D';
+		} else if (value < 0.1) {
+			return 'F';
+		} else {
+			return 'Can not calculate value';
+		}
 	}
-	// finalGrade: function(allThings) {
-	// 	if (value >= 3.7 && value <= 4.0) {
-	// 		return { ...GRADE_A };
-	// 	} else if (value >= 3.0 && value <= 3.6) {
-	// 		return { ...GRADE_B };
-	// 	} else if (value >= 2.0 && value <= 2.9) {
-	// 		return { ...GRADE_C };
-	// 	} else if (value >= 1.0 && value <= 1.9) {
-	// 		return { ...GRADE_D };
-	// 	} else if (value < 1.0) {
-	// 		return { ...GRADE_F };
-	// 	} else {
-	// 		return 'Can not calculate value';
-	// 	}
-	// }
 };
+
+// GPA: function(arr) {
+// 	arr.map(item => item.value).reduce((a,b) => (a + b)/arr.length)
+// },
