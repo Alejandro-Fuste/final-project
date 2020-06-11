@@ -15,12 +15,14 @@ import { Link } from "react-router-dom";
 export default function MainListItems() {
    return  (
             <div>
+                <Link style={{ color: '#fff', textDecoration: 'none'}} to='/'>
                 <ListItem button>
                     <ListItemIcon>
                         <DashboardIcon style={{color: '#A5A4BF'}}/>
                     </ListItemIcon>
                     <ListItemText primary="Dashboard"/>
                 </ListItem>
+                </Link>
                 <Link style={{ color: '#fff', textDecoration: 'none'}} to='/search'>
                     <ListItem button>
                         <ListItemIcon>
