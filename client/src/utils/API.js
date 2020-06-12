@@ -4,7 +4,7 @@ export default {
 	getStock: function({ ticker }) {
 		return axios.get(`/api/summary/?symbol=${ticker}`);
 	},
-	saveToWathlist: function(data) {
+	saveToWatchlist: function(data) {
 		return axios.post(`/api/watchlist`, data);
 	}
 };
