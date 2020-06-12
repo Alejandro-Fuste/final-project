@@ -153,8 +153,9 @@ export default function Dashboard() {
 	};
 
 	useEffect(() => {
+
 		API.getStock({
-			ticker: 'AAPL'
+			ticker: 'AAPL',
 		})
 			.then((res) => {
 				let data = {
@@ -181,22 +182,29 @@ export default function Dashboard() {
 				let gData = [
 					{ property: 'revenue', value: res.data.earnings.financialsChart.yearly[3].revenue.raw },
 					{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
-					{ property: 'operatingIncome', value: res.data.financialData.profitMargins.raw },
-					{ property: 'netIncome', value: res.data.earnings.financialsChart.yearly[3].earnings.raw },
-					{ property: 'operatingIncome', value: res.data.financialData.profitMargins.raw },
+					{ property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
+					{ property: 'netIncome', value: res.data.financialData.profitMargins.raw },
 					{ property: 'earningsPerShare', value: res.data.defaultKeyStatistics.trailingEps.raw },
 					{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
-					{ property: 'totalDebit', value: res.data.financialData.totalDebt.raw },
+					{ property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
 					{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
 					{ property: 'currentRatio', value: res.data.financialData.currentRatio.raw },
-					{ proprety: 'quickRatio', value: res.data.financialData.quickRatio.raw },
+					{ property: 'quickRatio', value: res.data.financialData.quickRatio.raw },
 					{ property: 'returnOnAssets', value: res.data.financialData.returnOnAssets.raw },
 					{ property: 'returnOnEquity', value: res.data.financialData.returnOnEquity.raw },
-					{ property: 'operatingCashFlow', value: res.data.financialData.operatingCashflow.raw },
 					{ property: 'freeCashFlow', value: res.data.financialData.freeCashflow.raw }
 				];
+
+				gData.forEach((item, i) => {
+					item.letterGrade = GradingScale[item.property](item.value);
+				});
+
+				gData.push({ finalGrade: GradingScale.finalGrade(gData)});
+
 				setSearchStock(data);
 				setGradeData(gData);
+				console.log('Grade Data:');
+				console.log(gradeData);
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -250,7 +258,7 @@ export default function Dashboard() {
 					item.letterGrade = GradingScale[item.property](item.value);
 				});
 
-				gData.push({ finalGrade: GradingScale.finalGrade(gData) });
+				gData.push({ finalGrade: GradingScale.finalGrade(gData)});
 
 				setSearchStock(data);
 				console.log(gData);
@@ -260,6 +268,14 @@ export default function Dashboard() {
 			})
 			.catch((err) => console.log(err));
 	};
+
+	const addToWatchListHandler = () => {
+		API.saveToWatchlist(gradeData)
+			.then(res => {
+				console.log(res.data);
+			})
+			.catch(err => console.log(err));
+	}
 
 	return (
 		<div className={classes.root}>
@@ -321,7 +337,7 @@ export default function Dashboard() {
 						<Route path="/watchlist">
 							<Watchlist />
 						</Route>
-					</Switch>
+
 					<Grid container spacing={3}>
 						{!searchStock ? "" :
 							<React.Fragment>
@@ -341,6 +357,7 @@ export default function Dashboard() {
 									<Typography style={{ alignSelf: 'center' }} variant="h4">
 										{searchStock.name} "{searchStock.symbol}"
 										<Button
+											onClick={addToWatchListHandler}
 											className={classes.color}
 											variant="contained"
 											endIcon={<WorkIcon />}> Add to Watchlist</Button>
@@ -380,14 +397,16 @@ export default function Dashboard() {
 										<h5>Free Cash Flow{searchStock.freeCashFlow}</h5>
 									</Paper>
 								</Grid>
-							</>
+							</React.Fragment>
 						}
 					</Grid>
+					</Switch>
 					<Box pt={4}>
 						<Copyright />
 					</Box>
 				</Container>
 			</main>
 		</div>
+
 	);
 }
