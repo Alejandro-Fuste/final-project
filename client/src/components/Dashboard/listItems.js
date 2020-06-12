@@ -23,14 +23,6 @@ export default function MainListItems() {
                     <ListItemText primary="Dashboard"/>
                 </ListItem>
                 </Link>
-                <Link style={{ color: '#fff', textDecoration: 'none'}} to='/search'>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <SearchIcon style={{color: '#A5A4BF'}}/>
-                        </ListItemIcon>
-                        <ListItemText primary="Search"/>
-                    </ListItem>
-                </Link>
                 <Link style={{ color: '#fff', textDecoration: 'none'}} to='/portfolio'>
                     <ListItem button>
                         <ListItemIcon>
