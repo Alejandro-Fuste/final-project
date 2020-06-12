@@ -2,7 +2,10 @@ import React from "react";
 
 function Watchlist() {
     return (
-        <h1>Hello from Watchlist</h1>
+       <div>
+           <h1>Hello from Watchlist</h1>
+           <p>Data should be getting added here.</p>
+       </div>
     )
 }
 
