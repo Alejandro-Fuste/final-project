@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const logger = require('morgan');
+const bodyParser = require('body-parser');
 
 // Requiring .dotenv file
 require('dotenv').config();
@@ -19,6 +20,10 @@ const app = express();
 //Configuring middleware needed for parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Bodyparser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Static directory
 app.use(express.static('public'));
@@ -46,11 +51,14 @@ app.get('*', function(req, res) {
 });
 
 //Starting database with mongoose
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/finalProject', {
-	useNewUrlParser: true,
-	useFindAndModify: false,
-	useUnifiedTopology: true
-});
+mongoose
+	.connect(process.env.MONGODB_URI || 'mongodb://localhost/finalProject', {
+		useNewUrlParser: true,
+		useFindAndModify: false,
+		useUnifiedTopology: true
+	})
+	.then(() => console.log('MongoDB connected'))
+	.catch((err) => console.log(err));
 
 //Start server to listen
 app.listen(PORT, () => console.log(`🌎 ==> API running on http://localhost:%s/`, PORT));
