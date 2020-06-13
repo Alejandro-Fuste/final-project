@@ -62,7 +62,17 @@ module.exports = function(app) {
 		yahooFinanceAPI
 			.getSummary(req.query)
 			.then(({ data }) => {
-				return res.json(data);
+				yahooFinanceAPI
+					.getNameAndSymbol(req.query)
+					.then((resultName) => {
+						data.longName = resultName.data[0].longName;
+						data.symbol = resultName.data[0].symbol;
+						console.log(data);
+						return res.json(data);
+					})
+					.catch((err) => {
+						throw err;
+					});
 			})
 			.catch((err) => {
 				throw err;

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const BASE_URI = 'https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2';
+const BASE_URI = 'https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/';
 
 const AuthHeader = () => {
 	return {
@@ -12,11 +12,23 @@ module.exports = {
 	getSummary: (query) => {
 		const { symbol = 'AAPL', region = 'US' } = query;
 
-		return axios.get(`${BASE_URI}/get-summary`, {
-			params: {
-				symbol,
-				region
-			},
+		return axios.get(`${BASE_URI}${symbol}/financial-data`, {
+			// params: {
+			// 	symbol,
+			// 	region
+			// },
+			headers: {
+				...AuthHeader()
+			}
+		});
+	},
+	getNameAndSymbol: (query) => {
+		const { symbol = 'AAPL' } = query;
+
+		return axios.get(`${BASE_URI}${symbol}`, {
+			// params: {
+			// 	symbol
+			// },
 			headers: {
 				...AuthHeader()
 			}
