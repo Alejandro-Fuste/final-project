@@ -18,7 +18,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 
 import MainListItems from './listItems';
 import Avatar from '@material-ui/core/Avatar';
@@ -176,7 +176,7 @@ export default function Dashboard() {
 
 	const handleSearchStock = (e) => {
 		e.preventDefault();
-		API.getStock({
+		API.getData({
 			ticker: searchRef.current.value.toUpperCase()
 		})
 			.then((res) => {
@@ -184,7 +184,7 @@ export default function Dashboard() {
 				setSearchStock(null);
 				setGradeData(null);
 				let data = {
-					name: res.data.quoteType.shortName,
+					name: res.data.shortName,
 					symbol: res.data.symbol,
 					year: res.data.earnings.financialsChart.yearly[3].date,
 					revenue: res.data.earnings.financialsChart.yearly[3].revenue.fmt,
@@ -223,7 +223,7 @@ export default function Dashboard() {
 					item.letterGrade = GradingScale[item.property](item.value);
 				});
 
-				gData.push({ finalGrade: GradingScale.finalGrade(gData)});
+				gData.push({ finalGrade: GradingScale.finalGrade(gData) });
 
 				setSearchStock(data);
 				console.log(gData);
@@ -236,11 +236,11 @@ export default function Dashboard() {
 
 	const addToWatchListHandler = () => {
 		API.saveToWatchlist(gradeData)
-			.then(res => {
+			.then((res) => {
 				console.log(res.data);
 			})
-			.catch(err => console.log(err));
-	}
+			.catch((err) => console.log(err));
+	};
 
 	return (
 		<div className={classes.root}>
@@ -300,68 +300,78 @@ export default function Dashboard() {
 							<Watchlist />
 						</Route>
 
-					<Grid container spacing={3}>
-						{!searchStock ? "" :
-							<React.Fragment>
-								<Grid  item xs={12} md={6}>
-									<Typography variant="h5" align="inherit" display="block">
-										Search for a Stock
-									</Typography>
-									<form onSubmit={handleSearchStock}>
-										<OutlinedInput
-											inputRef={searchRef}
-											endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
-											style={{ margin: '20px 0px'}}
-										/>
-									</form>
-								</Grid>
-								<Grid item xs={12} md={3}>
-									<Typography style={{ alignSelf: 'center' }} variant="h4">
-										{searchStock.name} "{searchStock.symbol}"
-										<Button
-											onClick={addToWatchListHandler}
-											className={classes.color}
-											variant="contained"
-											endIcon={<WorkIcon />}> Add to Watchlist</Button>
-									</Typography>
-								</Grid>
-								<Grid item xs={12} md={3}>
+						<Grid item xs={12} md={6}>
+							<Typography variant="h5" align="inherit" display="block">
+								Search for a Stock
+							</Typography>
 
-								</Grid>
-								<Grid item lg={6} xs={12}>
-									<Typography variant='h4'>Income Statement</Typography>
-									<Paper className={classes.paper}>
-										<h5>Year: {searchStock.year}</h5>
-										<h5>Revenue: {searchStock.revenue}</h5>
-										<h5>Gross Profit: {searchStock.grossProfit}</h5>
-										<h5>Operating Income: {searchStock.operatingIncome}</h5>
-										<h5>Net Income: {searchStock.netIncome}</h5>
-										<h5>Net Income Profit Margin: {searchStock.netIncomeProfitMargin}</h5>
-										<h5>Earnings Per Share: {searchStock.earningsPerShare}</h5>
-									</Paper>
-								</Grid>
-								<Grid item xs={6}>
-									<Typography variant='h4'>Balance Sheet</Typography>
-									<Paper className={classes.paper}>
-										<h5>Total Cash: {searchStock.totalCash}</h5>
-										<h5>Total Debit: {searchStock.totalDebit}</h5>
-										<h5>Debt/Equity: {searchStock.debtToEquity}</h5>
-										<h5>Current Ratio: {searchStock.currentRatio}</h5>
-										<h5>Quick Ratio: {searchStock.quickRatio}</h5>
-										<h5>Return on Assets: {searchStock.returnOnAssets}</h5>
-										<h5>Return on Equity: {searchStock.returnOnEquity}</h5>
-									</Paper>
-								</Grid>
-								<Grid item xs={6}>
-									<Typography variant='h4'>Cash Flow Statement</Typography>
-									<Paper className={classes.paper}>
-										<h5>Operating Cash Flow{searchStock.operatingCashFlow}</h5>
-										<h5>Free Cash Flow{searchStock.freeCashFlow}</h5>
-									</Paper>
-								</Grid>
-							</React.Fragment>
-						}
-					</Grid>
+							<form onSubmit={handleSearchStock}>
+								<OutlinedInput
+									inputRef={searchRef}
+									endAdornment={
+										<InputAdornment position="end">
+											<SearchIcon />
+										</InputAdornment>
+									}
+									style={{ margin: '20px 0px' }}
+								/>
+							</form>
+						</Grid>
+
+						<Grid container spacing={3}>
+							{!searchStock ? (
+								''
+							) : (
+								<React.Fragment>
+									<Grid item xs={12} md={3}>
+										<Typography style={{ alignSelf: 'center' }} variant="h4">
+											{searchStock.name} "{searchStock.symbol}"
+											<Button
+												onClick={addToWatchListHandler}
+												className={classes.color}
+												variant="contained"
+												endIcon={<WorkIcon />}
+											>
+												{' '}
+												Add to Watchlist
+											</Button>
+										</Typography>
+									</Grid>
+									<Grid item xs={12} md={3} />
+									<Grid item lg={6} xs={12}>
+										<Typography variant="h4">Income Statement</Typography>
+										<Paper className={classes.paper}>
+											<h5>Year: {searchStock.year}</h5>
+											<h5>Revenue: {searchStock.revenue}</h5>
+											<h5>Gross Profit: {searchStock.grossProfit}</h5>
+											<h5>Operating Income: {searchStock.operatingIncome}</h5>
+											<h5>Net Income: {searchStock.netIncome}</h5>
+											<h5>Net Income Profit Margin: {searchStock.netIncomeProfitMargin}</h5>
+											<h5>Earnings Per Share: {searchStock.earningsPerShare}</h5>
+										</Paper>
+									</Grid>
+									<Grid item xs={6}>
+										<Typography variant="h4">Balance Sheet</Typography>
+										<Paper className={classes.paper}>
+											<h5>Total Cash: {searchStock.totalCash}</h5>
+											<h5>Total Debit: {searchStock.totalDebit}</h5>
+											<h5>Debt/Equity: {searchStock.debtToEquity}</h5>
+											<h5>Current Ratio: {searchStock.currentRatio}</h5>
+											<h5>Quick Ratio: {searchStock.quickRatio}</h5>
+											<h5>Return on Assets: {searchStock.returnOnAssets}</h5>
+											<h5>Return on Equity: {searchStock.returnOnEquity}</h5>
+										</Paper>
+									</Grid>
+									<Grid item xs={6}>
+										<Typography variant="h4">Cash Flow Statement</Typography>
+										<Paper className={classes.paper}>
+											<h5>Operating Cash Flow{searchStock.operatingCashFlow}</h5>
+											<h5>Free Cash Flow{searchStock.freeCashFlow}</h5>
+										</Paper>
+									</Grid>
+								</React.Fragment>
+							)}
+						</Grid>
 					</Switch>
 					<Box pt={4}>
 						<Copyright />
@@ -369,6 +379,5 @@ export default function Dashboard() {
 				</Container>
 			</main>
 		</div>
-
 	);
 }
