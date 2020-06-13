@@ -18,17 +18,20 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import Button from "@material-ui/core/Button";
 
 import MainListItems from './listItems';
 import Avatar from '@material-ui/core/Avatar';
-import { TextField } from '@material-ui/core';
+import { OutlinedInput, InputAdornment } from '@material-ui/core';
+import WorkIcon from '@material-ui/icons/Work';
+import SearchIcon from '@material-ui/icons/Search';
 
 import { Switch, Route } from 'react-router-dom';
-import Search from '../pages/Search';
 import Portfolio from '../pages/Portfolio';
 import Watchlist from '../pages/WatchList';
 import API from '../../utils/API';
 import GradingScale from '../../utils/gradingScale';
+//import { data, gData} from "../../utils/data";
 
 function Copyright() {
 	return (
@@ -48,6 +51,10 @@ const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
 	root: {
 		display: 'flex'
+	},
+	color: {
+		backgroundColor: '#A5A4BF',
+		color: '#43425D'
 	},
 	toolbar: {
 		paddingRight: 24, // keep right padding when drawer closed
@@ -145,54 +152,27 @@ export default function Dashboard() {
 		setOpen(false);
 	};
 
-	useEffect(() => {
-		API.getStock({
-			ticker: 'AAPL'
-		})
-			.then((res) => {
-				let data = {
-					name: res.data.quoteType.shortName,
-					symbol: res.data.symbol,
-					year: res.data.earnings.financialsChart.yearly[3].date,
-					revenue: res.data.earnings.financialsChart.yearly[3].revenue.fmt,
-					grossProfit: res.data.financialData.grossMargins.fmt,
-					operatingIncome: res.data.financialData.profitMargins.fmt,
-					netIncome: res.data.earnings.financialsChart.yearly[3].earnings.fmt,
-					operatingIncomeAndNetProfit: res.data.financialData.profitMargins.fmt,
-					earningsPerShare: res.data.defaultKeyStatistics.trailingEps.fmt,
-					totalCash: res.data.financialData.totalCash.fmt,
-					totalDebit: res.data.financialData.totalDebt.fmt,
-					debtToEquity: res.data.financialData.debtToEquity.fmt,
-					currentRatio: res.data.financialData.currentRatio.fmt,
-					quickRatio: res.data.financialData.quickRatio.fmt,
-					returnOnAssets: res.data.financialData.returnOnAssets.fmt,
-					returnOnEquity: res.data.financialData.returnOnEquity.fmt,
-					operatingCashFlow: res.data.financialData.operatingCashflow.fmt,
-					freeCashFlow: res.data.financialData.freeCashflow.fmt
-				};
-
-				let gData = [
-					{ property: 'revenue', value: res.data.earnings.financialsChart.yearly[3].revenue.raw },
-					{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
-					{ property: 'operatingIncome', value: res.data.financialData.profitMargins.raw },
-					{ property: 'netIncome', value: res.data.earnings.financialsChart.yearly[3].earnings.raw },
-					{ property: 'operatingIncome', value: res.data.financialData.profitMargins.raw },
-					{ property: 'earningsPerShare', value: res.data.defaultKeyStatistics.trailingEps.raw },
-					{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
-					{ property: 'totalDebit', value: res.data.financialData.totalDebt.raw },
-					{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
-					{ property: 'currentRatio', value: res.data.financialData.currentRatio.raw },
-					{ proprety: 'quickRatio', value: res.data.financialData.quickRatio.raw },
-					{ property: 'returnOnAssets', value: res.data.financialData.returnOnAssets.raw },
-					{ property: 'returnOnEquity', value: res.data.financialData.returnOnEquity.raw },
-					{ property: 'operatingCashFlow', value: res.data.financialData.operatingCashflow.raw },
-					{ property: 'freeCashFlow', value: res.data.financialData.freeCashflow.raw }
-				];
-				setSearchStock(data);
-				setGradeData(gData);
-			})
-			.catch((err) => console.log(err));
-	}, []);
+	// useEffect(() => {
+	//
+	// 	API.getStock({
+	// 		ticker: 'AAPL',
+	// 	})
+	// 		.then((res) => {
+	//
+	//
+	// 			gData.forEach((item, i) => {
+	// 				item.letterGrade = GradingScale[item.property](item.value);
+	// 			});
+	//
+	// 			gData.push({ finalGrade: GradingScale.finalGrade(gData)});
+	//
+	// 			setSearchStock(data);
+	// 			setGradeData(gData);
+	// 			console.log('Grade Data:');
+	// 			console.log(gradeData);
+	// 		})
+	// 		.catch((err) => console.log(err));
+	// }, []);
 
 	const handleSearchStock = (e) => {
 		e.preventDefault();
@@ -243,7 +223,7 @@ export default function Dashboard() {
 					item.letterGrade = GradingScale[item.property](item.value);
 				});
 
-				gData.push({ finalGrade: GradingScale.finalGrade(gData) });
+				gData.push({ finalGrade: GradingScale.finalGrade(gData)});
 
 				setSearchStock(data);
 				console.log(gData);
@@ -253,6 +233,14 @@ export default function Dashboard() {
 			})
 			.catch((err) => console.log(err));
 	};
+
+	const addToWatchListHandler = () => {
+		API.saveToWatchlist(gradeData)
+			.then(res => {
+				console.log(res.data);
+			})
+			.catch(err => console.log(err));
+	}
 
 	return (
 		<div className={classes.root}>
@@ -305,35 +293,43 @@ export default function Dashboard() {
 
 				<Container maxWidth="lg" className={classes.container}>
 					<Switch>
-						<Route path="/search">
-							<Search />
-						</Route>
 						<Route path="/portfolio">
 							<Portfolio />
 						</Route>
 						<Route path="/watchlist">
 							<Watchlist />
 						</Route>
-					</Switch>
-					<Typography variant="h5" align="inherit" display="block">
-						Search for a Stock
-					</Typography>
-					<Grid container spacing={3}>
-						<Grid item xs={12} md={8} lg={9}>
-							<form onSubmit={handleSearchStock}>
-								<TextField style={{ margin: '15px 0px' }} variant="outlined" inputRef={searchRef} />
-							</form>
-						</Grid>
 
-						{!searchStock ? (
-							<p>Something</p>
-						) : (
+					<Grid container spacing={3}>
+						{!searchStock ? "" :
 							<React.Fragment>
-								<Grid item xs={6}>
-									<Typography variant="h4">
-										{searchStock.name} {searchStock.symbol}
+								<Grid  item xs={12} md={6}>
+									<Typography variant="h5" align="inherit" display="block">
+										Search for a Stock
 									</Typography>
-									<Typography variant="h4">Income Statement</Typography>
+									<form onSubmit={handleSearchStock}>
+										<OutlinedInput
+											inputRef={searchRef}
+											endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
+											style={{ margin: '20px 0px'}}
+										/>
+									</form>
+								</Grid>
+								<Grid item xs={12} md={3}>
+									<Typography style={{ alignSelf: 'center' }} variant="h4">
+										{searchStock.name} "{searchStock.symbol}"
+										<Button
+											onClick={addToWatchListHandler}
+											className={classes.color}
+											variant="contained"
+											endIcon={<WorkIcon />}> Add to Watchlist</Button>
+									</Typography>
+								</Grid>
+								<Grid item xs={12} md={3}>
+
+								</Grid>
+								<Grid item lg={6} xs={12}>
+									<Typography variant='h4'>Income Statement</Typography>
 									<Paper className={classes.paper}>
 										<h5>Year: {searchStock.year}</h5>
 										<h5>Revenue: {searchStock.revenue}</h5>
@@ -345,7 +341,7 @@ export default function Dashboard() {
 									</Paper>
 								</Grid>
 								<Grid item xs={6}>
-									<Typography variant="h4">Balance Sheet</Typography>
+									<Typography variant='h4'>Balance Sheet</Typography>
 									<Paper className={classes.paper}>
 										<h5>Total Cash: {searchStock.totalCash}</h5>
 										<h5>Total Debit: {searchStock.totalDebit}</h5>
@@ -357,20 +353,22 @@ export default function Dashboard() {
 									</Paper>
 								</Grid>
 								<Grid item xs={6}>
-									<Typography variant="h4">Cash Flow Statement</Typography>
+									<Typography variant='h4'>Cash Flow Statement</Typography>
 									<Paper className={classes.paper}>
 										<h5>Operating Cash Flow{searchStock.operatingCashFlow}</h5>
 										<h5>Free Cash Flow{searchStock.freeCashFlow}</h5>
 									</Paper>
 								</Grid>
 							</React.Fragment>
-						)}
+						}
 					</Grid>
+					</Switch>
 					<Box pt={4}>
 						<Copyright />
 					</Box>
 				</Container>
 			</main>
 		</div>
+
 	);
 }

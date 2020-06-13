@@ -3,7 +3,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import SearchIcon from '@material-ui/icons/Search';
 import WorkIcon from '@material-ui/icons/Work';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import LayersIcon from '@material-ui/icons/Layers';
@@ -15,19 +14,13 @@ import { Link } from "react-router-dom";
 export default function MainListItems() {
    return  (
             <div>
+                <Link style={{ color: '#fff', textDecoration: 'none'}} to='/'>
                 <ListItem button>
                     <ListItemIcon>
                         <DashboardIcon style={{color: '#A5A4BF'}}/>
                     </ListItemIcon>
                     <ListItemText primary="Dashboard"/>
                 </ListItem>
-                <Link style={{ color: '#fff', textDecoration: 'none'}} to='/search'>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <SearchIcon style={{color: '#A5A4BF'}}/>
-                        </ListItemIcon>
-                        <ListItemText primary="Search"/>
-                    </ListItem>
                 </Link>
                 <Link style={{ color: '#fff', textDecoration: 'none'}} to='/portfolio'>
                     <ListItem button>
