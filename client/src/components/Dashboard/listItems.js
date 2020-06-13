@@ -3,7 +3,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import SearchIcon from '@material-ui/icons/Search';
 import WorkIcon from '@material-ui/icons/Work';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import LayersIcon from '@material-ui/icons/Layers';
