@@ -75,7 +75,7 @@ module.exports = function(app) {
 					});
 			})
 			.catch((err) => {
-				throw err;
+				res.status(422).json(err);
 			});
 	});
 };
