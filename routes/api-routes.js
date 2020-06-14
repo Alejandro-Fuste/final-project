@@ -9,17 +9,17 @@ module.exports = function(app) {
 	// Each of the below routes will do a different CRUD operation.
 
 	// GET route to get user and their watchlist
-	app.get('/api/user', (req, res) => {
-		db.User
-			.find({})
-			.populate('Watchlist')
-			.then((data) => {
-				res.json(data);
-			})
-			.catch((err) => {
-				res.json(err);
-			});
-	});
+	// app.get('/api/user', (req, res) => {
+	// 	db.User
+	// 		.find({})
+	// 		.populate('Watchlist')
+	// 		.then((data) => {
+	// 			res.json(data);
+	// 		})
+	// 		.catch((err) => {
+	// 			res.json(err);
+	// 		});
+	// });
 
 	app.get('/api/watchlist', (req, res) => {
 		db.Watchlist
