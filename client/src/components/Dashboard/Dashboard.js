@@ -267,9 +267,8 @@ export default function Dashboard() {
 
 				gData.push({ finalGrade: GradingScale.finalGrade(gData) });
 
-				setSearchStock(data);
-				console.log(gData);
 				setGradeData(gData);
+				setSearchStock(data);
 				console.log('Grade Data:');
 				console.log(gradeData);
 			})
@@ -337,7 +336,7 @@ export default function Dashboard() {
 					<Switch>
 						<Route exact path="/">
 							<Grid container spacing={3}>
-								{!searchStock ? "" :
+								{(!searchStock || !gradeData) ? "" :
 									<React.Fragment>
 										<Grid  item xs={12} md={6}>
 											<Typography variant="h5" align="inherit" display="block">
@@ -353,7 +352,7 @@ export default function Dashboard() {
 										</Grid>
 										<Grid item xs={12} md={3}>
 											<Typography style={{ alignSelf: 'center' }} variant="h4">
-												{searchStock.name} "{searchStock.symbol}"
+												{searchStock.name} "{searchStock.symbol}" Final Grade: {gradeData[12].finalGrade}
 												<Button
 													onClick={addToWatchListHandler}
 													className={classes.color}
@@ -368,31 +367,74 @@ export default function Dashboard() {
 											<Typography variant='h4'>Income Statement</Typography>
 											<Paper className={classes.paper}>
 												<h5>Year: {searchStock.year}</h5>
-												<h5>Revenue: {searchStock.revenue}</h5>
-												<h5>Gross Profit: {searchStock.grossProfit}</h5>
-												<h5>Operating Income: {searchStock.operatingIncome}</h5>
-												<h5>Net Income: {searchStock.netIncome}</h5>
-												<h5>Net Income Profit Margin: {searchStock.netIncomeProfitMargin}</h5>
-												<h5>Earnings Per Share: {searchStock.earningsPerShare}</h5>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Revenue: {searchStock.revenue}</h3>
+													<h3>Grade: {gradeData[0].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Gross Profit: {searchStock.grossProfit}</h3>
+													<h3>Grade: {gradeData[1].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Operating Income: {searchStock.operatingIncome}</h3>
+													<h3>Grade: {gradeData[2].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Net Income: {searchStock.netIncome}</h3>
+													<h3>Grade: {gradeData[3].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Net Income: {searchStock.netIncome}</h3>
+													<h3>Grade: {gradeData[3].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Net Income Profit Margin: {searchStock.netIncomeProfitMargin}</h3>
+													<h3>Grade: {gradeData[4].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Earnings Per Share: {searchStock.netIncomeProfitMargin}</h3>
+
+												</div>
 											</Paper>
 										</Grid>
 										<Grid item xs={6}>
 											<Typography variant='h4'>Balance Sheet</Typography>
 											<Paper className={classes.paper}>
-												<h5>Total Cash: {searchStock.totalCash}</h5>
-												<h5>Total Debit: {searchStock.totalDebit}</h5>
-												<h5>Debt/Equity: {searchStock.debtToEquity}</h5>
-												<h5>Current Ratio: {searchStock.currentRatio}</h5>
-												<h5>Quick Ratio: {searchStock.quickRatio}</h5>
-												<h5>Return on Assets: {searchStock.returnOnAssets}</h5>
-												<h5>Return on Equity: {searchStock.returnOnEquity}</h5>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Total Cash: {searchStock.totalCash}</h3>
+													<h3>Grade: {gradeData[5].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Total Debit: {searchStock.totalDebit}</h3>
+													<h3>Grade: {gradeData[6].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Debt/Equity: {searchStock.debtToEquity}</h3>
+													<h3>Grade: {gradeData[7].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Current Ratio: {searchStock.currentRatio}</h3>
+													<h3>Grade: {gradeData[8].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Quick Ratio: {searchStock.quickRatio}</h3>
+													<h3>Grade: {gradeData[9].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Return on Assets: {searchStock.returnOnAssets}</h3>
+													<h3>Grade: {gradeData[10].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between'}}>
+													<h3>Return on Equity: {searchStock.returnOnEquity}</h3>
+													<h3>Grade: {gradeData[11].letterGrade.letter}</h3>
+												</div>
 											</Paper>
 										</Grid>
 										<Grid item xs={6}>
 											<Typography variant='h4'>Cash Flow Statement</Typography>
 											<Paper className={classes.paper}>
-												<h5>Operating Cash Flow: {searchStock.operatingCashFlow}</h5>
-												<h5>Free Cash Flow: {searchStock.freeCashFlow}</h5>
+												<h3>Operating Cash Flow: {searchStock.operatingCashFlow}</h3>
+												<h3>Free Cash Flow: {searchStock.freeCashFlow} Grade: </h3>
 											</Paper>
 										</Grid>
 									</React.Fragment>
