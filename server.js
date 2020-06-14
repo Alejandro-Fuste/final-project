@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+
+const users = require('./routes/users');
 
 // Requiring .dotenv file
 require('dotenv').config();
@@ -31,6 +34,10 @@ app.use(express.static('public'));
 // Morgan middleware
 app.use(logger('dev'));
 
+// Passport middleware and Passport Config
+app.use(passport.initialize());
+require('./config/passport')(passport);
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
@@ -38,6 +45,9 @@ if (process.env.NODE_ENV === 'production') {
 
 // API Routes
 require('./routes/api-routes.js')(app);
+
+// Routes
+app.use('/api/users', users);
 
 // Send every request to the React app
 // Define any API routes before this runs
