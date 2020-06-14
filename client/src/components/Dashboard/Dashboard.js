@@ -141,7 +141,7 @@ export default function Dashboard() {
 	const classes = useStyles();
 	const [ open, setOpen ] = useState(false);
 	const [ searchStock, setSearchStock ] = useState();
-	//const [ gradeData, setGradeData ] = useState();
+	const [ gradeData, setGradeData ] = useState();
 
 	const searchRef = useRef();
 
@@ -183,32 +183,32 @@ export default function Dashboard() {
 				 	freeCashFlow: res.data.financialData.freeCashflow.fmt
 				 };
 
-				// let gData = [
-				// 	{ property: 'revenue', value: res.data.earnings.financialsChart.yearly[3].revenue.raw },
-				// 	{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
-				// 	{ property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
-				// 	{ property: 'netIncome', value: res.data.financialData.profitMargins.raw },
-				// 	{ property: 'earningsPerShare', value: res.data.defaultKeyStatistics.trailingEps.raw },
-				// 	{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
-				// 	{ property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
-				// 	{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
-				// 	{ property: 'currentRatio', value: res.data.financialData.currentRatio.raw },
-				// 	{ property: 'quickRatio', value: res.data.financialData.quickRatio.raw },
-				// 	{ property: 'returnOnAssets', value: res.data.financialData.returnOnAssets.raw },
-				// 	{ property: 'returnOnEquity', value: res.data.financialData.returnOnEquity.raw },
-				// 	{ property: 'freeCashFlow', value: res.data.financialData.freeCashflow.raw }
-				// ];
-				//
-				// gData.forEach((item, i) => {
-				// 	item.letterGrade = GradingScale[item.property](item.value);
-				// });
-				//
-				// gData.push({ finalGrade: GradingScale.finalGrade(gData)});
-				//
+				let gData = [
+					{ property: 'revenue', value: res.data.financialData.revenuePerShare.raw },
+					{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
+					{ property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
+					{ property: 'netIncome', value: res.data.financialData.profitMargins.raw },
+					// { property: 'earningsPerShare', value: res.data.defaultKeyStatistics.trailingEps.raw },
+					{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
+					{ property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
+					{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
+					{ property: 'currentRatio', value: res.data.financialData.currentRatio.raw },
+					{ property: 'quickRatio', value: res.data.financialData.quickRatio.raw },
+					{ property: 'returnOnAssets', value: res.data.financialData.returnOnAssets.raw },
+					{ property: 'returnOnEquity', value: res.data.financialData.returnOnEquity.raw },
+					{ property: 'freeCashFlow', value: res.data.financialData.freeCashflow.raw }
+				];
+
+				gData.forEach((item, i) => {
+					item.letterGrade = GradingScale[item.property](item.value);
+				});
+
+				gData.push({ finalGrade: GradingScale.finalGrade(gData)});
+
 				setSearchStock(data);
-				//setGradeData(gData);
-				// console.log('Grade Data:');
-				// console.log(gradeData);
+				setGradeData(gData);
+				console.log('Grade Data:');
+				console.log(gradeData);
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -219,6 +219,8 @@ export default function Dashboard() {
 			ticker: searchRef.current.value.toUpperCase()
 		})
 			.then((res) => {
+				setSearchStock(null);
+				setGradeData(null);
 				// Trying to destructure this out a bit.
 				const { longName, symbol } = res.data;
 				console.log(longName, symbol);
@@ -244,32 +246,32 @@ export default function Dashboard() {
 					freeCashFlow: res.data.financialData.freeCashflow.fmt
 				};
 
-				// let gData = [
-				// 	{ property: 'revenue', value: res.data.earnings.financialsChart.yearly[3].revenue.raw },
-				// 	{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
-				// 	{ property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
-				// 	{ property: 'netIncome', value: res.data.financialData.profitMargins.raw },
-				// 	{ property: 'earningsPerShare', value: res.data.defaultKeyStatistics.trailingEps.raw },
-				// 	{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
-				// 	{ property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
-				// 	{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
-				// 	{ property: 'currentRatio', value: res.data.financialData.currentRatio.raw },
-				// 	{ property: 'quickRatio', value: res.data.financialData.quickRatio.raw },
-				// 	{ property: 'returnOnAssets', value: res.data.financialData.returnOnAssets.raw },
-				// 	{ property: 'returnOnEquity', value: res.data.financialData.returnOnEquity.raw },
-				// 	{ property: 'freeCashFlow', value: res.data.financialData.freeCashflow.raw }
-				// ];
-				// gData.forEach((item, i) => {
-				// 	item.letterGrade = GradingScale[item.property](item.value);
-				// });
-				//
-				// gData.push({ finalGrade: GradingScale.finalGrade(gData) });
+				 let gData = [
+					 { property: 'revenue', value: res.data.financialData.revenuePerShare.raw },
+					 { property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
+					 { property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
+					 { property: 'netIncome', value: res.data.financialData.profitMargins.raw },
+					 // { property: 'earningsPerShare', value: res.data.defaultKeyStatistics.trailingEps.raw },
+					 { property: 'totalCash', value: res.data.financialData.totalCash.raw },
+					 { property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
+					 { property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
+					 { property: 'currentRatio', value: res.data.financialData.currentRatio.raw },
+					 { property: 'quickRatio', value: res.data.financialData.quickRatio.raw },
+					 { property: 'returnOnAssets', value: res.data.financialData.returnOnAssets.raw },
+					 { property: 'returnOnEquity', value: res.data.financialData.returnOnEquity.raw },
+					 { property: 'freeCashFlow', value: res.data.financialData.freeCashflow.raw }
+				 ];
+				gData.forEach((item, i) => {
+					item.letterGrade = GradingScale[item.property](item.value);
+				});
+
+				gData.push({ finalGrade: GradingScale.finalGrade(gData) });
 
 				setSearchStock(data);
-				//console.log(gData);
-				//setGradeData(gData);
-				// console.log('Grade Data:');
-				// console.log(gradeData);
+				console.log(gData);
+				setGradeData(gData);
+				console.log('Grade Data:');
+				console.log(gradeData);
 			})
 			.catch((err) => console.log(err));
 	};
