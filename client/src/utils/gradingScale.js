@@ -76,16 +76,16 @@ export default {
 			return 'Can not calculate value';
 		}
 	},
-	earningsPerShare: function(value) {
-		if (value >= 10) {
+	earningsGrowth: function(value) {
+		if (value >= 0.1) {
 			return { ...GRADE_A };
-		} else if (value >= 7 && value <= 9) {
+		} else if (value >= 0.07 && value <= 0.09999) {
 			return { ...GRADE_B };
-		} else if (value >= 4 && value <= 6) {
+		} else if (value >= 0.04 && value <= 0.06999) {
 			return { ...GRADE_C };
-		} else if (value >= 1 && value <= 3) {
+		} else if (value >= 0.01 && value <= 0.03999) {
 			return { ...GRADE_D };
-		} else if (value < 1) {
+		} else if (value < 0.01) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
