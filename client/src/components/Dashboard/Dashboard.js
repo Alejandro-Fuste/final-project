@@ -166,7 +166,7 @@ export default function Dashboard() {
 				let data = {
 					name: longName,
 					symbol,
-					// year: moment().subtract(365, 'days').format('YYYY'),
+					year: moment().subtract(365, 'days').format('YYYY'),
 					revenue: res.data.financialData.totalRevenue.fmt,
 					grossProfit: res.data.financialData.grossMargins.fmt,
 					operatingIncome: res.data.financialData.operatingMargins.fmt,
@@ -229,7 +229,7 @@ export default function Dashboard() {
 				let data = {
 					name: longName,
 					symbol,
-					// year: res.data.earnings.financialsChart.yearly[3].date,
+					year: moment().subtract(365, 'days').format('YYYY'),
 					revenue: res.data.financialData.totalRevenue.fmt,
 					grossProfit: res.data.financialData.grossMargins.fmt,
 					operatingIncome: res.data.financialData.operatingMargins.fmt,
@@ -375,7 +375,7 @@ export default function Dashboard() {
 										<Grid item lg={6} xs={12}>
 											<Typography variant="h4">Income Statement</Typography>
 											<Paper className={classes.paper}>
-												{/* <h5>Year: {moment().subtract(365, 'days').format('YYYY')}</h5> */}
+												<h3>Year: {searchStock.year}</h3>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 													<h3>Revenue: {searchStock.revenue}</h3>
 													<h3>Grade: {gradeData[0].letterGrade.letter}</h3>
