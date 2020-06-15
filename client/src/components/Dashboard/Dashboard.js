@@ -276,7 +276,7 @@ export default function Dashboard() {
 	};
 
 	const addToWatchListHandler = () => {
-		API.saveToWatchlist()
+		API.saveToWatchlist(gradeData)
 			.then((res) => {
 				console.log(res.data);
 			})
@@ -356,93 +356,88 @@ export default function Dashboard() {
 												/>
 											</form>
 										</Grid>
-										<Grid item xs={12} md={3}>
-											<Typography style={{ alignSelf: 'center' }} variant="h4">
-												{searchStock.name} "{searchStock.symbol}" Final Grade:{' '}
-												{gradeData[13].finalGrade}
+										<Grid item xs={12} md={6}>
+												<h2>{searchStock.name} "{searchStock.symbol}" Final Grade:{' '}
+													{gradeData[13].finalGrade}
+												</h2>
 												<Button
 													onClick={addToWatchListHandler}
 													className={classes.color}
 													variant="contained"
 													endIcon={<WorkIcon />}
 												>
-													{' '}
 													Add to Watchlist
 												</Button>
-											</Typography>
 										</Grid>
-										<Grid item xs={12} md={3} />
 										<Grid item lg={6} xs={12}>
-											<Typography variant="h4">Income Statement</Typography>
-											<Paper className={classes.paper}>
+											<Typography gutterBottom={true} variant="h4">Income Statement</Typography>
+											<Paper className={classes.paper} style={{ color: '#43425D' }}>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 													<h3>Year: {searchStock.year} </h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Revenue: {searchStock.revenue}</h3>
-													<h3>Grade: {gradeData[0].letterGrade.letter}</h3>
+													<h3>Revenue: <span style={{ color: '#797A9F' }}>{searchStock.revenue}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[0].letterGrade.letter}</span></h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Gross Profit: {searchStock.grossProfit}</h3>
-													<h3>Grade: {gradeData[1].letterGrade.letter}</h3>
+													<h3>Gross Profit: <span style={{ color: '#797A9F' }}>{searchStock.grossProfit}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[1].letterGrade.letter}</span></h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Operating Income: {searchStock.operatingIncome}</h3>
-													<h3>Grade: {gradeData[2].letterGrade.letter}</h3>
+													<h3>Operating Income: <span style={{ color: '#797A9F' }}>{searchStock.operatingIncome}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[2].letterGrade.letter}</span></h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Net Income: {searchStock.netIncome}</h3>
-													<h3>Grade: {gradeData[3].letterGrade.letter}</h3>
+													<h3>Net Income: <span style={{ color: '#797A9F' }}>{searchStock.netIncome}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[3].letterGrade.letter}</span></h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Earnings Growth: {searchStock.earningsGrowth}</h3>
-													<h3>Grade: {gradeData[4].letterGrade.letter}</h3>
-												</div>
-											</Paper>
-										</Grid>
-										<Grid item xs={6}>
-											<Typography variant="h4">Balance Sheet</Typography>
-											<Paper className={classes.paper}>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Total Cash: {searchStock.totalCash}</h3>
-													<h3>Grade: {gradeData[5].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Total Debit: {searchStock.totalDebit}</h3>
-													<h3>Grade: {gradeData[6].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Current Ratio: {searchStock.currentRatio}</h3>
-													<h3>Grade: {gradeData[8].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Quick Ratio: {searchStock.quickRatio}</h3>
-													<h3>Grade: {gradeData[9].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Return on Assets: {searchStock.returnOnAssets}</h3>
-													<h3>Grade: {gradeData[10].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Return on Equity: {searchStock.returnOnEquity}</h3>
-													<h3>Grade: {gradeData[11].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Debt/Equity: {searchStock.debtToEquity}</h3>
-													<h3>Grade: Not Graded</h3>
+													<h3>Earnings Growth: <span style={{ color: '#797A9F' }}>{searchStock.earningsGrowth}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[4].letterGrade.letter}</span></h3>
 												</div>
 											</Paper>
 										</Grid>
-										<Grid item xs={6}>
-											<Typography variant="h4">Cash Flow Statement</Typography>
+										<Grid item lg={6} xs={12}>
+											<Typography gutterBottom={true} variant="h4">Balance Sheet</Typography>
 											<Paper className={classes.paper}>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Free Cash Flow: {searchStock.freeCashFlow}</h3>
-													<h3>Grade: {gradeData[12].letterGrade.letter}</h3>
+													<h3>Total Cash: <span style={{ color: '#797A9F' }}>{searchStock.totalCash}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[5].letterGrade.letter}</span></h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Operating Cash Flow: {searchStock.operatingCashFlow}</h3>
-													<h3>Grade: Not Graded</h3>
+													<h3>Total Debit: <span style={{ color: '#797A9F' }}>{searchStock.totalDebit}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[6].letterGrade.letter}</span></h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Current Ratio: <span style={{ color: '#797A9F' }}>{searchStock.currentRatio}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[8].letterGrade.letter}</span></h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Quick Ratio: <span style={{ color: '#797A9F' }}>{searchStock.quickRatio}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[9].letterGrade.letter}</span></h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Return on Assets: <span style={{ color: '#797A9F' }}>{searchStock.returnOnAssets}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[10].letterGrade.letter}</span></h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Return on Equity: <span style={{ color: '#797A9F' }}>{searchStock.returnOnEquity}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[11].letterGrade.letter}</span></h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Debt/Equity: <span style={{ color: '#797A9F' }}>{searchStock.debtToEquity}</span></h3>
+												</div>
+											</Paper>
+										</Grid>
+										<Grid item lg={6} xs={12}>
+											<Typography gutterBottom={true} variant="h4">Cash Flow Statement</Typography>
+											<Paper className={classes.paper}>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Free Cash Flow: <span style={{ color: '#797A9F' }}>{searchStock.freeCashFlow}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[12].letterGrade.letter}</span></h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Operating Cash Flow: <span style={{ color: '#797A9F' }}>{searchStock.operatingCashFlow}</span></h3>
 												</div>
 											</Paper>
 										</Grid>
