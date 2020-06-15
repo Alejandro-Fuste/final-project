@@ -1,34 +1,28 @@
 {
-  "name": "mern",
-  "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:3001/",
-  "dependencies": {
-    "@material-ui/core": "^4.9.14",
-    "@material-ui/icons": "^4.9.1",
-    "axios": "^0.19.2",
-    "chart.js": "^2.9.3",
-    "classnames": "^2.2.6",
-    "jwt-decode": "^2.2.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^2.1.1",
-    "recharts": "^1.8.5",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+	"name": "mern",
+	"version": "0.1.0",
+	"private": true,
+	"proxy": "http://localhost:3001/",
+	"dependencies": {
+		"@material-ui/core": "^4.9.14",
+		"@material-ui/icons": "^4.9.1",
+		"axios": "^0.19.2",
+		"chart.js": "^2.9.3",
+		"moment": "^2.26.0",
+		"react": "^16.6.3",
+		"react-dom": "^16.6.3",
+		"react-redux": "^7.2.0",
+		"react-router-dom": "^5.2.0",
+		"react-scripts": "^2.1.1",
+		"recharts": "^1.8.5",
+		"redux": "^4.0.5",
+		"redux-thunk": "^2.3.0"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject"
+	},
+	"browserslist": [ ">0.2%", "not dead", "not ie <= 11", "not op_mini all" ]
 }

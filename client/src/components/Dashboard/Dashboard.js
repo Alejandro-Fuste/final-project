@@ -36,6 +36,7 @@ import Login from '../auth/Login';
 import Register from '../auth/Register';
 import PrivateRoute from '../private-route/PrivateRoute';
 // import Dashboard2 from './Dashboard';
+import moment from 'moment';
 
 function Copyright() {
 	return (
@@ -169,12 +170,12 @@ export default function Dashboard() {
 				let data = {
 					name: longName,
 					symbol,
-					// year: res.data.earnings.financialsChart.yearly[3].date,
-					revenue: res.data.financialData.revenuePerShare.fmt,
+					year: moment().subtract(365, 'days').format('YYYY'),
+					revenue: res.data.financialData.totalRevenue.fmt,
 					grossProfit: res.data.financialData.grossMargins.fmt,
-					operatingIncome: res.data.financialData.profitMargins.fmt,
-					// 	netIncome: res.data.earnings.financialsChart.yearly[3].earnings.fmt,
-					// 	earningsPerShare: res.data.defaultKeyStatistics.trailingEps.fmt,
+					operatingIncome: res.data.financialData.operatingMargins.fmt,
+					netIncome: res.data.financialData.profitMargins.fmt,
+					earningsGrowth: res.data.financialData.earningsGrowth.fmt,
 					totalCash: res.data.financialData.totalCash.fmt,
 					totalDebit: res.data.financialData.totalDebt.fmt,
 					debtToEquity: res.data.financialData.debtToEquity.fmt,
@@ -187,11 +188,11 @@ export default function Dashboard() {
 				};
 
 				let gData = [
-					{ property: 'revenue', value: res.data.financialData.revenuePerShare.raw },
+					{ property: 'revenue', value: res.data.financialData.totalRevenue.raw },
 					{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
 					{ property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
 					{ property: 'netIncome', value: res.data.financialData.profitMargins.raw },
-					// { property: 'earningsPerShare', value: res.data.defaultKeyStatistics.trailingEps.raw },
+					{ property: 'earningsGrowth', value: res.data.financialData.earningsGrowth.raw },
 					{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
 					{ property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
 					{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
@@ -232,12 +233,12 @@ export default function Dashboard() {
 				let data = {
 					name: longName,
 					symbol,
-					// year: res.data.earnings.financialsChart.yearly[3].date,
-					revenue: res.data.financialData.revenuePerShare.fmt,
+					year: moment().subtract(365, 'days').format('YYYY'),
+					revenue: res.data.financialData.totalRevenue.fmt,
 					grossProfit: res.data.financialData.grossMargins.fmt,
-					operatingIncome: res.data.financialData.profitMargins.fmt,
-					// 	netIncome: res.data.earnings.financialsChart.yearly[3].earnings.fmt,
-					// 	earningsPerShare: res.data.defaultKeyStatistics.trailingEps.fmt,
+					operatingIncome: res.data.financialData.operatingMargins.fmt,
+					netIncome: res.data.financialData.profitMargins.fmt,
+					earningsGrowth: res.data.financialData.earningsGrowth.fmt,
 					totalCash: res.data.financialData.totalCash.fmt,
 					totalDebit: res.data.financialData.totalDebt.fmt,
 					debtToEquity: res.data.financialData.debtToEquity.fmt,
@@ -250,11 +251,11 @@ export default function Dashboard() {
 				};
 
 				let gData = [
-					{ property: 'revenue', value: res.data.financialData.revenuePerShare.raw },
+					{ property: 'revenue', value: res.data.financialData.totalRevenue.raw },
 					{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
 					{ property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
 					{ property: 'netIncome', value: res.data.financialData.profitMargins.raw },
-					// { property: 'earningsPerShare', value: res.data.defaultKeyStatistics.trailingEps.raw },
+					{ property: 'earningsGrowth', value: res.data.financialData.earningsGrowth.raw },
 					{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
 					{ property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
 					{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
@@ -362,7 +363,7 @@ export default function Dashboard() {
 										<Grid item xs={12} md={3}>
 											<Typography style={{ alignSelf: 'center' }} variant="h4">
 												{searchStock.name} "{searchStock.symbol}" Final Grade:{' '}
-												{gradeData[12].finalGrade}
+												{gradeData[13].finalGrade}
 												<Button
 													onClick={addToWatchListHandler}
 													className={classes.color}
@@ -378,7 +379,7 @@ export default function Dashboard() {
 										<Grid item lg={6} xs={12}>
 											<Typography variant="h4">Income Statement</Typography>
 											<Paper className={classes.paper}>
-												<h5>Year: {searchStock.year}</h5>
+												<h3>Year: {searchStock.year}</h3>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 													<h3>Revenue: {searchStock.revenue}</h3>
 													<h3>Grade: {gradeData[0].letterGrade.letter}</h3>
@@ -396,17 +397,8 @@ export default function Dashboard() {
 													<h3>Grade: {gradeData[3].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Net Income: {searchStock.netIncome}</h3>
-													<h3>Grade: {gradeData[3].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Net Income Profit Margin: {searchStock.netIncomeProfitMargin}
-													</h3>
+													<h3>Earnings Growth: {searchStock.earningsGrowth}</h3>
 													<h3>Grade: {gradeData[4].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Earnings Per Share: {searchStock.netIncomeProfitMargin}</h3>
 												</div>
 											</Paper>
 										</Grid>
@@ -420,10 +412,6 @@ export default function Dashboard() {
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 													<h3>Total Debit: {searchStock.totalDebit}</h3>
 													<h3>Grade: {gradeData[6].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Debt/Equity: {searchStock.debtToEquity}</h3>
-													<h3>Grade: {gradeData[7].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 													<h3>Current Ratio: {searchStock.currentRatio}</h3>
@@ -441,13 +429,23 @@ export default function Dashboard() {
 													<h3>Return on Equity: {searchStock.returnOnEquity}</h3>
 													<h3>Grade: {gradeData[11].letterGrade.letter}</h3>
 												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Debt/Equity: {searchStock.debtToEquity}</h3>
+													<h3>Grade: Not Graded</h3>
+												</div>
 											</Paper>
 										</Grid>
 										<Grid item xs={6}>
 											<Typography variant="h4">Cash Flow Statement</Typography>
 											<Paper className={classes.paper}>
-												<h3>Operating Cash Flow: {searchStock.operatingCashFlow}</h3>
-												<h3>Free Cash Flow: {searchStock.freeCashFlow} Grade: </h3>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Free Cash Flow: {searchStock.freeCashFlow}</h3>
+													<h3>Grade: {gradeData[12].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Operating Cash Flow: {searchStock.operatingCashFlow}</h3>
+													<h3>Grade: Not Graded</h3>
+												</div>
 											</Paper>
 										</Grid>
 									</React.Fragment>
