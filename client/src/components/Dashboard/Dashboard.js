@@ -33,6 +33,7 @@ import Login from '../pages/Login';
 import API from '../../utils/API';
 import GradingScale from '../../utils/gradingScale';
 import moment from 'moment';
+import Spinner from "./Spinner";
 
 function Copyright() {
 	return (
@@ -337,7 +338,7 @@ export default function Dashboard() {
 						<Route exact path="/">
 							<Grid container spacing={3}>
 								{!searchStock || !gradeData ? (
-									''
+									<Spinner style={{ margin: '0, auto'}} />
 								) : (
 									<React.Fragment>
 										<Grid item xs={12} md={6}>
