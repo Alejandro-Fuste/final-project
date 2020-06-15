@@ -35,7 +35,7 @@ import GradingScale from '../../utils/gradingScale';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
 import PrivateRoute from '../private-route/PrivateRoute';
-import Dashboard2 from '../dashboard2/Dashboard';
+// import Dashboard2 from './Dashboard';
 
 function Copyright() {
 	return (
@@ -466,7 +466,7 @@ export default function Dashboard() {
 						<Route path="/register">
 							<Register />
 						</Route>
-						<PrivateRoute exact path="/dashboard" component={Dashboard} />
+						{/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
 					</Switch>
 
 					<Box pt={4}>
