@@ -32,6 +32,7 @@ import Watchlist from '../pages/WatchList';
 import Login from '../pages/Login';
 import API from '../../utils/API';
 import GradingScale from '../../utils/gradingScale';
+import moment from 'moment';
 
 function Copyright() {
 	return (
@@ -165,7 +166,7 @@ export default function Dashboard() {
 				let data = {
 					name: longName,
 					symbol,
-					// year: res.data.earnings.financialsChart.yearly[3].date,
+					// year: moment().subtract(365, 'days').format('YYYY'),
 					revenue: res.data.financialData.totalRevenue.fmt,
 					grossProfit: res.data.financialData.grossMargins.fmt,
 					operatingIncome: res.data.financialData.operatingMargins.fmt,
@@ -358,7 +359,7 @@ export default function Dashboard() {
 										<Grid item xs={12} md={3}>
 											<Typography style={{ alignSelf: 'center' }} variant="h4">
 												{searchStock.name} "{searchStock.symbol}" Final Grade:{' '}
-												{gradeData[12].finalGrade}
+												{gradeData[13].finalGrade}
 												<Button
 													onClick={addToWatchListHandler}
 													className={classes.color}
@@ -374,7 +375,7 @@ export default function Dashboard() {
 										<Grid item lg={6} xs={12}>
 											<Typography variant="h4">Income Statement</Typography>
 											<Paper className={classes.paper}>
-												<h5>Year: {searchStock.year}</h5>
+												{/* <h5>Year: {moment().subtract(365, 'days').format('YYYY')}</h5> */}
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 													<h3>Revenue: {searchStock.revenue}</h3>
 													<h3>Grade: {gradeData[0].letterGrade.letter}</h3>
@@ -409,10 +410,6 @@ export default function Dashboard() {
 													<h3>Grade: {gradeData[6].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Debt/Equity: {searchStock.debtToEquity}</h3>
-													<h3>Grade: {gradeData[7].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 													<h3>Current Ratio: {searchStock.currentRatio}</h3>
 													<h3>Grade: {gradeData[8].letterGrade.letter}</h3>
 												</div>
@@ -428,13 +425,23 @@ export default function Dashboard() {
 													<h3>Return on Equity: {searchStock.returnOnEquity}</h3>
 													<h3>Grade: {gradeData[11].letterGrade.letter}</h3>
 												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Debt/Equity: {searchStock.debtToEquity}</h3>
+													<h3>Grade: Not Graded</h3>
+												</div>
 											</Paper>
 										</Grid>
 										<Grid item xs={6}>
 											<Typography variant="h4">Cash Flow Statement</Typography>
 											<Paper className={classes.paper}>
-												<h3>Operating Cash Flow: {searchStock.operatingCashFlow}</h3>
-												<h3>Free Cash Flow: {searchStock.freeCashFlow} Grade: </h3>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Free Cash Flow: {searchStock.freeCashFlow}</h3>
+													<h3>Grade: {gradeData[12].letterGrade.letter}</h3>
+												</div>
+												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+													<h3>Operating Cash Flow: {searchStock.operatingCashFlow}</h3>
+													<h3>Grade: Not Graded</h3>
+												</div>
 											</Paper>
 										</Grid>
 									</React.Fragment>
