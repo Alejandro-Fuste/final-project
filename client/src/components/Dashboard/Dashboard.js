@@ -479,13 +479,6 @@ export default function Dashboard() {
 						<Route path="/watchlist">
 							<Watchlist />
 						</Route>
-						{/* <Route exact path="/login">
-							<Login />
-						</Route>
-						<Route exact path="/register">
-							<Register />
-						</Route> */}
-						{/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
 					</Switch>
 
 					<Box pt={4}>
