@@ -61,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
 	items: {
 		display: 'flex',
 		justifyContent: 'space-between',
-
 		borderTop: '1px solid #eee',
 		borderBottom: '1px solid #efefef',
 		padding: '7px 20px',
@@ -367,13 +366,15 @@ export default function Dashboard() {
 												/>
 											</form>
 										</Grid>
-										<Grid item xs={12}>
-											<h1>{searchStock.name} "{searchStock.symbol}" Final Grade:{' '}
+										<Grid item xs={12} md={6}>
+											<h1 style={{ paddingTop: '40px'}}>{searchStock.name} "{searchStock.symbol}" Final Grade:{' '}
 												{gradeData[13].finalGrade}</h1>
+										</Grid>
+										<Grid item xs={12}>
 											<Paper className={classes.paper} style={{ color: '#43425D' }}>
 												<h1 style={{paddingLeft: '20px'}}>Income Statement</h1>
 												<div className={classes.items}>
-													<h3>Year: {searchStock.year} </h3>
+													<h3>Year: <span style={{ color: '#797A9F' }}>{searchStock.year}</span></h3>
 												</div>
 												<div className={classes.items}>
 													<h3>Revenue: <span style={{ color: '#797A9F' }}>{searchStock.revenue}</span></h3>
