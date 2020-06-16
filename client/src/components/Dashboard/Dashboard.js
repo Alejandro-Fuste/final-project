@@ -267,7 +267,6 @@ export default function Dashboard() {
 				];
 				gData.forEach((item, i) => {
 					item.letterGrade = GradingScale[item.property](item.value);
-					console.log(item);
 				});
 
 				gData.push({ finalGrade: GradingScale.finalGrade(gData) });
