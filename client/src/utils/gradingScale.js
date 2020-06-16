@@ -26,7 +26,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 60000000000 && value <= 79999999999) {
 			return { ...GRADE_D };
-		} else if (value <= 59999999999 || noValue) {
+		} else if (value <= 59999999999 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -41,7 +41,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.14 && value <= 0.19) {
 			return { ...GRADE_D };
-		} else if (value <= 0.13 || noValue) {
+		} else if (value <= 0.13 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -56,7 +56,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.09 && value <= 0.11999) {
 			return { ...GRADE_D };
-		} else if (value <= 0.08999 || noValue) {
+		} else if (value <= 0.08999 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -71,7 +71,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.09 && value <= 0.11999) {
 			return { ...GRADE_D };
-		} else if (value <= 0.08999 || noValue) {
+		} else if (value <= 0.08999 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -86,7 +86,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.01 && value <= 0.03999) {
 			return { ...GRADE_D };
-		} else if (value < 0.01 || noValue) {
+		} else if (value < 0.01 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -101,7 +101,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 17000000000 && value <= 37999999999) {
 			return { ...GRADE_D };
-		} else if (value <= 16999999999 || noValue) {
+		} else if (value <= 16999999999 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -116,7 +116,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 106000000001 && value <= 126000000000) {
 			return { ...GRADE_D };
-		} else if (value >= 126000000001 || noValue) {
+		} else if (value >= 126000000001 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -131,7 +131,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.81 && value <= 0.9) {
 			return { ...GRADE_D };
-		} else if (value > 0.9 || noValue) {
+		} else if (value > 0.9 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -146,7 +146,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.79 && value <= 0.89) {
 			return { ...GRADE_D };
-		} else if (value <= 0.78 || noValue) {
+		} else if (value <= 0.78 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -161,7 +161,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.79 && value <= 0.89) {
 			return { ...GRADE_D };
-		} else if (value <= 0.78 || noValue) {
+		} else if (value <= 0.78 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -176,7 +176,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.01 && value <= 0.029) {
 			return { ...GRADE_D };
-		} else if (value < 0.01 || noValue) {
+		} else if (value < 0.01 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -191,7 +191,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.05 && value <= 0.099) {
 			return { ...GRADE_D };
-		} else if (value <= 0.0499 || noValue) {
+		} else if (value <= 0.0499 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -206,7 +206,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 22000000000 && value <= 27999999999) {
 			return { ...GRADE_D };
-		} else if (value <= 21999999999 || noValue) {
+		} else if (value <= 21999999999 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -223,7 +223,7 @@ export default {
 			return 'C';
 		} else if (value >= 0.1 && value <= 0.19) {
 			return 'D';
-		} else if (value < 0.1 || noValue) {
+		} else if (value < 0.1 || value === noValue) {
 			return 'F';
 		} else {
 			return 'Can not calculate value';
