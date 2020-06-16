@@ -338,7 +338,7 @@ export default function Dashboard() {
 
 				<Container maxWidth="lg" className={classes.container}>
 					<Switch>
-						<Route exact path="/">
+						<Route exact path="/dashboard">
 							<Grid container spacing={3}>
 								{!searchStock || !gradeData ? (
 									''
@@ -458,12 +458,12 @@ export default function Dashboard() {
 						<Route path="/watchlist">
 							<Watchlist />
 						</Route>
-						<Route path="/login">
+						{/* <Route exact path="/login">
 							<Login />
 						</Route>
-						<Route path="/register">
+						<Route exact path="/register">
 							<Register />
-						</Route>
+						</Route> */}
 						{/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
 					</Switch>
 
