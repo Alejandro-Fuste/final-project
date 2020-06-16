@@ -7,7 +7,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import Register from './components/auth/Register';
-import Login from './components/auth/Login';
+// import Login from './components/auth/Login';
+import Login2 from './components/auth/Login2';
 import PrivateRoute from './components/private-route/PrivateRoute';
 import Dashboard from './components/Dashboard/Dashboard';
 
@@ -30,9 +31,9 @@ function App() {
 		<Provider store={store}>
 			<Router>
 				<div className="App">
-					<Route exact path="/" component={Login} />
+					<Route exact path="/" component={Login2} />
 					<Route exact path="/register" component={Register} />
-					<Route exact path="/login" component={Login} />
+					<Route exact path="/login" component={Login2} />
 					<Switch>
 						<PrivateRoute path="/dashboard" component={Dashboard} />
 					</Switch>

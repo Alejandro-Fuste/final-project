@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,7 +11,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -63,21 +63,18 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-class Login extends Component {
-	constructor() {
-		super();
-		this.state = {
-			email: '',
-			password: '',
-			errors: {}
-		};
-	}
+const Login = () => {
+	const classes = useStyles();
 
-	componentDidMount() {
+	const [ email, setEmail ] = useState('');
+	const [ password, setPassword ] = useState('');
+	const [ errors, setErrors ] = useState({});
+
+	const componentDidMount = () => {
 		if (this.props.auth.isAuthenticated) this.props.history.push('/dashboard');
-	}
+	};
 
-	componentWillReceiveProps(nextProps) {
+	const componentWillReceiveProps = (nextProps) => {
 		if (nextProps.auth.isAuthenticated) this.props.history.push('/dashboard');
 
 		if (nextProps.errors) {
@@ -85,13 +82,13 @@ class Login extends Component {
 				errors: nextProps.errors
 			});
 		}
-	}
+	};
 
-	onChange = (e) => {
+	const onChange = (e) => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
 
-	onSubmit = (e) => {
+	const onSubmit = (e) => {
 		e.preventDefault();
 
 		const userData = {
@@ -103,76 +100,105 @@ class Login extends Component {
 		this.props.loginUser(userData);
 	};
 
-	render() {
-		const { errors } = this.state;
+	const { errors } = this.state;
 
-		return (
-			<div className="container">
-				<div className="row" style={{ marginTop: '4rem' }}>
-					<div className="col s8 offset-s2">
-						<Link to="/" className="btn-flat waves-effect">
-							<i className="material-icons left">keyboard_backspace</i> Back to home
-						</Link>
-						<div className="col s12" style={{ paddingLeft: '11.250px' }}>
-							<h4>
-								<b>Login</b> below
-							</h4>
-							<p className="grey-text text-darken-1">
-								Don't have an account? <Link to="/register">Register</Link>
-							</p>
-						</div>
-						<form noValidate onSubmit={this.onSubmit}>
-							<div className="input-field col s12">
-								<input
-									onChange={this.onChange}
-									value={this.state.email}
-									error={errors.email}
-									name="email"
-									type="email"
-									className={classnames('', { invalid: errors.email || errors.emailnotfound })}
-								/>
-								<label htmlFor="email">Email</label>
-								<span className="red-text">
-									{errors.email}
-									{errors.emailnotfound}
-								</span>
-							</div>
-							<div className="input-field col s12">
-								<input
-									onChange={this.onChange}
-									value={this.state.password}
-									error={errors.password}
-									name="password"
-									type="password"
-									className={classnames('', { invalid: errors.password || errors.passwordincorrect })}
-								/>
-								<label htmlFor="password">Password</label>
-								<span className="red-text">
-									{errors.password}
-									{errors.passwordincorrect}
-								</span>
-							</div>
-							<div className="col s12" style={{ paddingLeft: '11.250px' }}>
-								<button
-									className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-									style={{
-										width: '150px',
-										borderRadius: '3px',
-										letterSpacing: '1.5px',
-										marginTop: '1rem'
-									}}
-									type="submit"
-								>
-									Login
-								</button>
-							</div>
-						</form>
-					</div>
+	return (
+		<Grid container component="main" className={classes.root}>
+			<CssBaseline />
+			<Grid item xs={false} sm={4} md={7} className={classes.image} />
+			<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+				<div className={classes.paper}>
+					<Avatar className={classes.avatar}>
+						<LockOutlinedIcon />
+					</Avatar>
+					<Typography component="h1" variant="h5">
+						Sign in
+					</Typography>
+
+					<form noValidate onSubmit={this.onSubmit}>
+						<TextField
+							variant="outlined"
+							margin="normal"
+							required
+							fullWidth
+							id="email"
+							label="Email Address"
+							name="email"
+							autoComplete="email"
+							autoFocus
+							onChange={this.onChange}
+							value={this.state.email}
+							error={errors.email}
+							// type="email"
+							className={classnames('', { invalid: errors.email || errors.emailnotfound })}
+						/>
+					</form>
+
+					<Grid container>
+						<Grid item>
+							<Link to="register" variant="body2">
+								{"Don't have an account? Register"}
+							</Link>
+						</Grid>
+					</Grid>
+					<Box mt={5}>
+						<Copyright />
+					</Box>
 				</div>
-			</div>
-		);
-	}
-}
+			</Grid>
+		</Grid>
+		// <div className="container">
+		// 			<form noValidate onSubmit={this.onSubmit}>
+		// 				<div className="input-field col s12">
+		// 					<input
+		// 						onChange={this.onChange}
+		// 						value={this.state.email}
+		// 						error={errors.email}
+		// 						name="email"
+		// 						type="email"
+		// 						className={classnames('', { invalid: errors.email || errors.emailnotfound })}
+		// 					/>
+		// 					<label htmlFor="email">Email</label>
+		// 					<span className="red-text">
+		// 						{errors.email}
+		// 						{errors.emailnotfound}
+		// 					</span>
+		// 				</div>
+		// 				<div className="input-field col s12">
+		// 					<input
+		// 						onChange={this.onChange}
+		// 						value={this.state.password}
+		// 						error={errors.password}
+		// 						name="password"
+		// 						type="password"
+		// 						className={classnames('', { invalid: errors.password || errors.passwordincorrect })}
+		// 					/>
+		// 					<label htmlFor="password">Password</label>
+		// 					<span className="red-text">
+		// 						{errors.password}
+		// 						{errors.passwordincorrect}
+		// 					</span>
+		// 				</div>
+		// 				<div className="col s12" style={{ paddingLeft: '11.250px' }}>
+		// 					<button
+		// 						className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+		// 						style={{
+		// 							width: '150px',
+		// 							borderRadius: '3px',
+		// 							letterSpacing: '1.5px',
+		// 							marginTop: '1rem'
+		// 						}}
+		// 						type="submit"
+		// 					>
+		// 						Login
+		// 					</button>
+		// 				</div>
+		// 			</form>
+		// 		</div>
+		// 	</div>
+		// </div>
+	);
+};
 
 Login.propTypes = {
 	loginUser: PropTypes.func.isRequired,
