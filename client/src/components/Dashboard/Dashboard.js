@@ -434,11 +434,25 @@ export default function Dashboard() {
 													<h3>Grade: {gradeData[10].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Return on Equity: {searchStock.returnOnEquity}</h3>
+													<h3>
+														Return on Equity:{' '}
+														{!searchStock.returnOnEquity ? (
+															'No value'
+														) : (
+															searchStock.returnOnEquity
+														)}
+													</h3>
 													<h3>Grade: {gradeData[11].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Debt/Equity: {searchStock.debtToEquity}</h3>
+													<h3>
+														Debt/Equity:{' '}
+														{!searchStock.debtToEquity ? (
+															'No value'
+														) : (
+															searchStock.debtToEquity
+														)}
+													</h3>
 													<h3>Grade: Not Graded</h3>
 												</div>
 											</Paper>
