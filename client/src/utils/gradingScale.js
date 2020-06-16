@@ -86,7 +86,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.01 && value <= 0.03999) {
 			return { ...GRADE_D };
-		} else if (value <= 0.00999 || value === noValue) {
+		} else if (value < 0.01 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -223,7 +223,7 @@ export default {
 			return 'C';
 		} else if (value >= 0.1 && value <= 0.19) {
 			return 'D';
-		} else if (value < 0.1) {
+		} else if (value < 0.1 || value === noValue) {
 			return 'F';
 		} else {
 			return 'Can not calculate value';
