@@ -377,23 +377,50 @@ export default function Dashboard() {
 											<Paper className={classes.paper}>
 												<h3>Year: {searchStock.year}</h3>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Revenue: {searchStock.revenue}</h3>
+													<h3>
+														Revenue:{' '}
+														{!searchStock.revenue ? 'No Value' : searchStock.revenue}
+													</h3>
 													<h3>Grade: {gradeData[0].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Gross Profit: {searchStock.grossProfit}</h3>
+													<h3>
+														Gross Profit:{' '}
+														{!searchStock.grossProfit ? (
+															'No Value'
+														) : (
+															searchStock.grossProfit
+														)}
+													</h3>
 													<h3>Grade: {gradeData[1].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Operating Income: {searchStock.operatingIncome}</h3>
+													<h3>
+														Operating Income:{' '}
+														{!searchStock.operatingIncome ? (
+															'No Value'
+														) : (
+															searchStock.operatingIncome
+														)}
+													</h3>
 													<h3>Grade: {gradeData[2].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Net Income: {searchStock.netIncome}</h3>
+													<h3>
+														Net Income:{' '}
+														{!searchStock.netIncome ? 'No Value' : searchStock.netIncome}
+													</h3>
 													<h3>Grade: {gradeData[3].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Earnings Growth: {searchStock.earningsGrowth}</h3>
+													<h3>
+														Earnings Growth:{' '}
+														{!searchStock.earningsGrowth ? (
+															'No Value'
+														) : (
+															searchStock.earningsGrowth
+														)}
+													</h3>
 													<h3>Grade: {gradeData[4].letterGrade.letter}</h3>
 												</div>
 											</Paper>
@@ -402,31 +429,68 @@ export default function Dashboard() {
 											<Typography variant="h4">Balance Sheet</Typography>
 											<Paper className={classes.paper}>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Total Cash: {searchStock.totalCash}</h3>
+													<h3>
+														Total Cash:{' '}
+														{!searchStock.totalCash ? 'No Value' : searchStock.totalCash}
+													</h3>
 													<h3>Grade: {gradeData[5].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Total Debit: {searchStock.totalDebit}</h3>
+													<h3>
+														Total Debit:{' '}
+														{!searchStock.totalDebit ? 'No Value' : searchStock.totalDebit}
+													</h3>
 													<h3>Grade: {gradeData[6].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Current Ratio: {searchStock.currentRatio}</h3>
+													<h3>
+														Current Ratio:{' '}
+														{!searchStock.currentRatio ? (
+															'No Value'
+														) : (
+															searchStock.currentRatio
+														)}
+													</h3>
 													<h3>Grade: {gradeData[8].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Quick Ratio: {searchStock.quickRatio}</h3>
+													<h3>
+														Quick Ratio:{' '}
+														{!searchStock.quickRatio ? 'No Value' : searchStock.quickRatio}
+													</h3>
 													<h3>Grade: {gradeData[9].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Return on Assets: {searchStock.returnOnAssets}</h3>
+													<h3>
+														Return on Assets:{' '}
+														{!searchStock.returnOnAssets ? (
+															'No Value'
+														) : (
+															searchStock.returnOnAssets
+														)}
+													</h3>
 													<h3>Grade: {gradeData[10].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Return on Equity: {searchStock.returnOnEquity}</h3>
+													<h3>
+														Return on Equity:{' '}
+														{!searchStock.returnOnEquity ? (
+															'No Value'
+														) : (
+															searchStock.returnOnEquity
+														)}
+													</h3>
 													<h3>Grade: {gradeData[11].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Debt/Equity: {searchStock.debtToEquity}</h3>
+													<h3>
+														Debt/Equity:{' '}
+														{!searchStock.debtToEquity ? (
+															'No Value'
+														) : (
+															searchStock.debtToEquity
+														)}
+													</h3>
 													<h3>Grade: Not Graded</h3>
 												</div>
 											</Paper>
@@ -435,11 +499,25 @@ export default function Dashboard() {
 											<Typography variant="h4">Cash Flow Statement</Typography>
 											<Paper className={classes.paper}>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Free Cash Flow: {searchStock.freeCashFlow}</h3>
+													<h3>
+														Free Cash Flow:{' '}
+														{!searchStock.freeCashFlow ? (
+															'No Value'
+														) : (
+															searchStock.freeCashFlow
+														)}
+													</h3>
 													<h3>Grade: {gradeData[12].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Operating Cash Flow: {searchStock.operatingCashFlow}</h3>
+													<h3>
+														Operating Cash Flow:{' '}
+														{!searchStock.operatingCashFlow ? (
+															'No Value'
+														) : (
+															searchStock.operatingCashFlow
+														)}
+													</h3>
 													<h3>Grade: Not Graded</h3>
 												</div>
 											</Paper>
