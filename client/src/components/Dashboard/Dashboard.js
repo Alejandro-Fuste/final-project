@@ -33,6 +33,7 @@ import Login from '../pages/Login';
 import API from '../../utils/API';
 import GradingScale from '../../utils/gradingScale';
 import moment from 'moment';
+import Spinner from "./Spinner";
 
 function Copyright() {
 	return (
@@ -56,6 +57,15 @@ const useStyles = makeStyles((theme) => ({
 	color: {
 		backgroundColor: '#A5A4BF',
 		color: '#43425D'
+	},
+	items: {
+		display: 'flex',
+		justifyContent: 'space-between',
+		borderTop: '1px solid #eee',
+		borderBottom: '1px solid #efefef',
+		padding: '7px 20px',
+		borderRadius: '6px',
+		margin: '10px 0'
 	},
 	toolbar: {
 		paddingRight: 24, // keep right padding when drawer closed
@@ -276,7 +286,7 @@ export default function Dashboard() {
 	};
 
 	const addToWatchListHandler = () => {
-		API.saveToWatchlist()
+		API.saveToWatchlist(gradeData)
 			.then((res) => {
 				console.log(res.data);
 			})
@@ -337,7 +347,7 @@ export default function Dashboard() {
 						<Route exact path="/">
 							<Grid container spacing={3}>
 								{!searchStock || !gradeData ? (
-									''
+									<Spinner />
 								) : (
 									<React.Fragment>
 										<Grid item xs={12} md={6}>
@@ -356,171 +366,125 @@ export default function Dashboard() {
 												/>
 											</form>
 										</Grid>
-										<Grid item xs={12} md={3}>
-											<Typography style={{ alignSelf: 'center' }} variant="h4">
-												{searchStock.name} "{searchStock.symbol}" Final Grade:{' '}
-												{gradeData[13].finalGrade}
+										<Grid item xs={12} md={6}>
+											<h1 style={{ paddingTop: '40px'}}>{searchStock.name} "{searchStock.symbol}" Final Grade:{' '}
+												{gradeData[13].finalGrade}</h1>
+										</Grid>
+										<Grid item xs={12}>
+											<Paper className={classes.paper} style={{ color: '#43425D' }}>
+												<h1 style={{paddingLeft: '20px'}}>Income Statement</h1>
+												<div className={classes.items}>
+													<h3>Year: <span style={{ color: '#797A9F' }}>{searchStock.year}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Revenue: <span style={{ color: '#797A9F' }}>{!searchStock.revenue ? 'No Value' : searchStock.revenue}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[0].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Gross Profit: <span style={{ color: '#797A9F' }}>	{!searchStock.grossProfit ? (
+															'No Value'
+														) : (
+															searchStock.grossProfit
+														)}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[1].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Operating Income: <span style={{ color: '#797A9F' }}>{!searchStock.operatingIncome ? (
+															'No Value'
+														) : (
+															searchStock.operatingIncome
+														)}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[2].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Net Income: <span style={{ color: '#797A9F' }}>{!searchStock.netIncome ? 'No Value' : searchStock.netIncome}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[3].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Earnings Growth: <span style={{ color: '#797A9F' }}>Earnings Growth:{' '}
+														{!searchStock.earningsGrowth ? (
+															'No Value'
+														) : (
+															searchStock.earningsGrowth
+														)}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[4].letterGrade.letter}</span></h3>
+												</div>
+
+												<h1 style={{paddingLeft: '20px'}}>Balance Sheet</h1>
+
+												<div className={classes.items}>
+													<h3>Total Cash: <span style={{ color: '#797A9F' }}>{!searchStock.totalCash ? 'No Value' : searchStock.totalCash}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[5].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Total Debit: <span style={{ color: '#797A9F' }}>{!searchStock.totalDebit ? 'No Value' : searchStock.totalDebit}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[6].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Current Ratio: <span style={{ color: '#797A9F' }}>{!searchStock.currentRatio ? (
+															'No Value'
+														) : (
+															searchStock.currentRatio
+														)}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[8].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Quick Ratio: <span style={{ color: '#797A9F' }}>{!searchStock.quickRatio ? 'No Value' : searchStock.quickRatio}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[9].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Return on Assets: <span style={{ color: '#797A9F' }}>	{!searchStock.returnOnAssets ? (
+															'No Value'
+														) : (
+															searchStock.returnOnAssets
+														)}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[10].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Return on Equity: <span style={{ color: '#797A9F' }}>{!searchStock.returnOnEquity ? (
+															'No Value'
+														) : (
+															searchStock.returnOnEquity
+														)}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[11].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Debt/Equity: <span style={{ color: '#797A9F' }}>	{!searchStock.debtToEquity ? (
+															'No Value'
+														) : (
+															searchStock.debtToEquity
+														)}</span></h3>
+												</div>
+
+												<h1 style={{paddingLeft: '20px'}}>Cash Flow Statement</h1>
+
+												<div className={classes.items}>
+													<h3>Free Cash Flow: <span style={{ color: '#797A9F' }}>{!searchStock.freeCashFlow ? (
+															'No Value'
+														) : (
+															searchStock.freeCashFlow
+														)}</span></h3>
+													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[12].letterGrade.letter}</span></h3>
+												</div>
+												<div className={classes.items}>
+													<h3>Operating Cash Flow: <span style={{ color: '#797A9F' }}>{!searchStock.operatingCashFlow ? (
+															'No Value'
+														) : (
+															searchStock.operatingCashFlow
+														)}</span></h3>
+												</div>
+											</Paper>
+											<Grid item xs={12} md={6}>
 												<Button
+													style={{ margin: '30px 0'}}
 													onClick={addToWatchListHandler}
 													className={classes.color}
 													variant="contained"
 													endIcon={<WorkIcon />}
 												>
-													{' '}
 													Add to Watchlist
 												</Button>
-											</Typography>
-										</Grid>
-										<Grid item xs={12} md={3} />
-										<Grid item lg={6} xs={12}>
-											<Typography variant="h4">Income Statement</Typography>
-											<Paper className={classes.paper}>
-												<h3>Year: {searchStock.year}</h3>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Revenue:{' '}
-														{!searchStock.revenue ? 'No Value' : searchStock.revenue}
-													</h3>
-													<h3>Grade: {gradeData[0].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Gross Profit:{' '}
-														{!searchStock.grossProfit ? (
-															'No Value'
-														) : (
-															searchStock.grossProfit
-														)}
-													</h3>
-													<h3>Grade: {gradeData[1].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Operating Income:{' '}
-														{!searchStock.operatingIncome ? (
-															'No Value'
-														) : (
-															searchStock.operatingIncome
-														)}
-													</h3>
-													<h3>Grade: {gradeData[2].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Net Income:{' '}
-														{!searchStock.netIncome ? 'No Value' : searchStock.netIncome}
-													</h3>
-													<h3>Grade: {gradeData[3].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Earnings Growth:{' '}
-														{!searchStock.earningsGrowth ? (
-															'No Value'
-														) : (
-															searchStock.earningsGrowth
-														)}
-													</h3>
-													<h3>Grade: {gradeData[4].letterGrade.letter}</h3>
-												</div>
-											</Paper>
-										</Grid>
-										<Grid item xs={6}>
-											<Typography variant="h4">Balance Sheet</Typography>
-											<Paper className={classes.paper}>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Total Cash:{' '}
-														{!searchStock.totalCash ? 'No Value' : searchStock.totalCash}
-													</h3>
-													<h3>Grade: {gradeData[5].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Total Debit:{' '}
-														{!searchStock.totalDebit ? 'No Value' : searchStock.totalDebit}
-													</h3>
-													<h3>Grade: {gradeData[6].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Current Ratio:{' '}
-														{!searchStock.currentRatio ? (
-															'No Value'
-														) : (
-															searchStock.currentRatio
-														)}
-													</h3>
-													<h3>Grade: {gradeData[8].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Quick Ratio:{' '}
-														{!searchStock.quickRatio ? 'No Value' : searchStock.quickRatio}
-													</h3>
-													<h3>Grade: {gradeData[9].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Return on Assets:{' '}
-														{!searchStock.returnOnAssets ? (
-															'No Value'
-														) : (
-															searchStock.returnOnAssets
-														)}
-													</h3>
-													<h3>Grade: {gradeData[10].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Return on Equity:{' '}
-														{!searchStock.returnOnEquity ? (
-															'No Value'
-														) : (
-															searchStock.returnOnEquity
-														)}
-													</h3>
-													<h3>Grade: {gradeData[11].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Debt/Equity:{' '}
-														{!searchStock.debtToEquity ? (
-															'No Value'
-														) : (
-															searchStock.debtToEquity
-														)}
-													</h3>
-													<h3>Grade: Not Graded</h3>
-												</div>
-											</Paper>
-										</Grid>
-										<Grid item xs={6}>
-											<Typography variant="h4">Cash Flow Statement</Typography>
-											<Paper className={classes.paper}>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Free Cash Flow:{' '}
-														{!searchStock.freeCashFlow ? (
-															'No Value'
-														) : (
-															searchStock.freeCashFlow
-														)}
-													</h3>
-													<h3>Grade: {gradeData[12].letterGrade.letter}</h3>
-												</div>
-												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>
-														Operating Cash Flow:{' '}
-														{!searchStock.operatingCashFlow ? (
-															'No Value'
-														) : (
-															searchStock.operatingCashFlow
-														)}
-													</h3>
-													<h3>Grade: Not Graded</h3>
-												</div>
-											</Paper>
+											</Grid>
 										</Grid>
 									</React.Fragment>
 								)}
