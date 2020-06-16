@@ -398,7 +398,14 @@ export default function Dashboard() {
 													<h3>Grade: {gradeData[3].letterGrade.letter}</h3>
 												</div>
 												<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-													<h3>Earnings Growth: {searchStock.earningsGrowth}</h3>
+													<h3>
+														Earnings Growth:{' '}
+														{!searchStock.earningsGrowth ? (
+															'No Growth'
+														) : (
+															searchStock.earningsGrowth
+														)}
+													</h3>
 													<h3>Grade: {gradeData[4].letterGrade.letter}</h3>
 												</div>
 											</Paper>
