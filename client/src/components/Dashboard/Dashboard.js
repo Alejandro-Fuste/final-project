@@ -29,13 +29,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Switch, Route } from 'react-router-dom';
 import Portfolio from '../pages/Portfolio';
 import Watchlist from '../pages/WatchList';
-// import Login from '../pages/Login';
 import API from '../../utils/API';
 import GradingScale from '../../utils/gradingScale';
-import Login from '../auth/Login';
-import Register from '../auth/Register';
-import PrivateRoute from '../private-route/PrivateRoute';
-// import Dashboard2 from './Dashboard';
 import moment from 'moment';
 
 function Copyright() {
@@ -157,65 +152,65 @@ export default function Dashboard() {
 		setOpen(false);
 	};
 
-	useEffect(() => {
-		API.getData({
-			ticker: 'AAPL'
-		})
-			.then((res) => {
-				// Trying to destructure this out a bit.
-				const { longName, symbol } = res.data;
-				console.log(longName, symbol);
-				console.log(res.data);
+	// useEffect(() => {
+	// 	API.getData({
+	// 		ticker: 'AAPL'
+	// 	})
+	// 		.then((res) => {
+	// 			// Trying to destructure this out a bit.
+	// 			const { longName, symbol } = res.data;
+	// 			console.log(longName, symbol);
+	// 			console.log(res.data);
 
-				let data = {
-					name: longName,
-					symbol,
-					year: moment().subtract(365, 'days').format('YYYY'),
-					revenue: res.data.financialData.totalRevenue.fmt,
-					grossProfit: res.data.financialData.grossMargins.fmt,
-					operatingIncome: res.data.financialData.operatingMargins.fmt,
-					netIncome: res.data.financialData.profitMargins.fmt,
-					earningsGrowth: res.data.financialData.earningsGrowth.fmt,
-					totalCash: res.data.financialData.totalCash.fmt,
-					totalDebit: res.data.financialData.totalDebt.fmt,
-					debtToEquity: res.data.financialData.debtToEquity.fmt,
-					currentRatio: res.data.financialData.currentRatio.fmt,
-					quickRatio: res.data.financialData.quickRatio.fmt,
-					returnOnAssets: res.data.financialData.returnOnAssets.fmt,
-					returnOnEquity: res.data.financialData.returnOnEquity.fmt,
-					operatingCashFlow: res.data.financialData.operatingCashflow.fmt,
-					freeCashFlow: res.data.financialData.freeCashflow.fmt
-				};
+	// 			let data = {
+	// 				name: longName,
+	// 				symbol,
+	// 				year: moment().subtract(365, 'days').format('YYYY'),
+	// 				revenue: res.data.financialData.totalRevenue.fmt,
+	// 				grossProfit: res.data.financialData.grossMargins.fmt,
+	// 				operatingIncome: res.data.financialData.operatingMargins.fmt,
+	// 				netIncome: res.data.financialData.profitMargins.fmt,
+	// 				earningsGrowth: res.data.financialData.earningsGrowth.fmt,
+	// 				totalCash: res.data.financialData.totalCash.fmt,
+	// 				totalDebit: res.data.financialData.totalDebt.fmt,
+	// 				debtToEquity: res.data.financialData.debtToEquity.fmt,
+	// 				currentRatio: res.data.financialData.currentRatio.fmt,
+	// 				quickRatio: res.data.financialData.quickRatio.fmt,
+	// 				returnOnAssets: res.data.financialData.returnOnAssets.fmt,
+	// 				returnOnEquity: res.data.financialData.returnOnEquity.fmt,
+	// 				operatingCashFlow: res.data.financialData.operatingCashflow.fmt,
+	// 				freeCashFlow: res.data.financialData.freeCashflow.fmt
+	// 			};
 
-				let gData = [
-					{ property: 'revenue', value: res.data.financialData.totalRevenue.raw },
-					{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
-					{ property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
-					{ property: 'netIncome', value: res.data.financialData.profitMargins.raw },
-					{ property: 'earningsGrowth', value: res.data.financialData.earningsGrowth.raw },
-					{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
-					{ property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
-					{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
-					{ property: 'currentRatio', value: res.data.financialData.currentRatio.raw },
-					{ property: 'quickRatio', value: res.data.financialData.quickRatio.raw },
-					{ property: 'returnOnAssets', value: res.data.financialData.returnOnAssets.raw },
-					{ property: 'returnOnEquity', value: res.data.financialData.returnOnEquity.raw },
-					{ property: 'freeCashFlow', value: res.data.financialData.freeCashflow.raw }
-				];
+	// 			let gData = [
+	// 				{ property: 'revenue', value: res.data.financialData.totalRevenue.raw },
+	// 				{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
+	// 				{ property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
+	// 				{ property: 'netIncome', value: res.data.financialData.profitMargins.raw },
+	// 				{ property: 'earningsGrowth', value: res.data.financialData.earningsGrowth.raw },
+	// 				{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
+	// 				{ property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
+	// 				{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
+	// 				{ property: 'currentRatio', value: res.data.financialData.currentRatio.raw },
+	// 				{ property: 'quickRatio', value: res.data.financialData.quickRatio.raw },
+	// 				{ property: 'returnOnAssets', value: res.data.financialData.returnOnAssets.raw },
+	// 				{ property: 'returnOnEquity', value: res.data.financialData.returnOnEquity.raw },
+	// 				{ property: 'freeCashFlow', value: res.data.financialData.freeCashflow.raw }
+	// 			];
 
-				gData.forEach((item, i) => {
-					item.letterGrade = GradingScale[item.property](item.value);
-				});
+	// 			gData.forEach((item, i) => {
+	// 				item.letterGrade = GradingScale[item.property](item.value);
+	// 			});
 
-				gData.push({ finalGrade: GradingScale.finalGrade(gData) });
+	// 			gData.push({ finalGrade: GradingScale.finalGrade(gData) });
 
-				setSearchStock(data);
-				setGradeData(gData);
-				console.log('Grade Data:');
-				console.log(gradeData);
-			})
-			.catch((err) => console.log(err));
-	}, []);
+	// 			setSearchStock(data);
+	// 			setGradeData(gData);
+	// 			console.log('Grade Data:');
+	// 			console.log(gradeData);
+	// 		})
+	// 		.catch((err) => console.log(err));
+	// }, []);
 
 	const handleSearchStock = (e) => {
 		e.preventDefault();
