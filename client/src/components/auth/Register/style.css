@@ -1,0 +1,15 @@
+.registerPic {
+	background-image: url('../../../assets/login-bg.png');
+	position: relative;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.logoName {
+	color: #707070;
+	font-size: 1.8rem;
+	margin: 5px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+}

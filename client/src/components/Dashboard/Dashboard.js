@@ -32,7 +32,7 @@ import Watchlist from '../pages/WatchList';
 import API from '../../utils/API';
 import GradingScale from '../../utils/gradingScale';
 import moment from 'moment';
-import Spinner from "./Spinner";
+import Spinner from './Spinner';
 
 function Copyright() {
 	return (
@@ -162,65 +162,65 @@ export default function Dashboard() {
 		setOpen(false);
 	};
 
-	// useEffect(() => {
-	// 	API.getData({
-	// 		ticker: 'AAPL'
-	// 	})
-	// 		.then((res) => {
-	// 			// Trying to destructure this out a bit.
-	// 			const { longName, symbol } = res.data;
-	// 			console.log(longName, symbol);
-	// 			console.log(res.data);
+	useEffect(() => {
+		API.getData({
+			ticker: 'AAPL'
+		})
+			.then((res) => {
+				// Trying to destructure this out a bit.
+				const { longName, symbol } = res.data;
+				console.log(longName, symbol);
+				console.log(res.data);
 
-	// 			let data = {
-	// 				name: longName,
-	// 				symbol,
-	// 				year: moment().subtract(365, 'days').format('YYYY'),
-	// 				revenue: res.data.financialData.totalRevenue.fmt,
-	// 				grossProfit: res.data.financialData.grossMargins.fmt,
-	// 				operatingIncome: res.data.financialData.operatingMargins.fmt,
-	// 				netIncome: res.data.financialData.profitMargins.fmt,
-	// 				earningsGrowth: res.data.financialData.earningsGrowth.fmt,
-	// 				totalCash: res.data.financialData.totalCash.fmt,
-	// 				totalDebit: res.data.financialData.totalDebt.fmt,
-	// 				debtToEquity: res.data.financialData.debtToEquity.fmt,
-	// 				currentRatio: res.data.financialData.currentRatio.fmt,
-	// 				quickRatio: res.data.financialData.quickRatio.fmt,
-	// 				returnOnAssets: res.data.financialData.returnOnAssets.fmt,
-	// 				returnOnEquity: res.data.financialData.returnOnEquity.fmt,
-	// 				operatingCashFlow: res.data.financialData.operatingCashflow.fmt,
-	// 				freeCashFlow: res.data.financialData.freeCashflow.fmt
-	// 			};
+				let data = {
+					name: longName,
+					symbol,
+					year: moment().subtract(365, 'days').format('YYYY'),
+					revenue: res.data.financialData.totalRevenue.fmt,
+					grossProfit: res.data.financialData.grossMargins.fmt,
+					operatingIncome: res.data.financialData.operatingMargins.fmt,
+					netIncome: res.data.financialData.profitMargins.fmt,
+					earningsGrowth: res.data.financialData.earningsGrowth.fmt,
+					totalCash: res.data.financialData.totalCash.fmt,
+					totalDebit: res.data.financialData.totalDebt.fmt,
+					debtToEquity: res.data.financialData.debtToEquity.fmt,
+					currentRatio: res.data.financialData.currentRatio.fmt,
+					quickRatio: res.data.financialData.quickRatio.fmt,
+					returnOnAssets: res.data.financialData.returnOnAssets.fmt,
+					returnOnEquity: res.data.financialData.returnOnEquity.fmt,
+					operatingCashFlow: res.data.financialData.operatingCashflow.fmt,
+					freeCashFlow: res.data.financialData.freeCashflow.fmt
+				};
 
-	// 			let gData = [
-	// 				{ property: 'revenue', value: res.data.financialData.totalRevenue.raw },
-	// 				{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
-	// 				{ property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
-	// 				{ property: 'netIncome', value: res.data.financialData.profitMargins.raw },
-	// 				{ property: 'earningsGrowth', value: res.data.financialData.earningsGrowth.raw },
-	// 				{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
-	// 				{ property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
-	// 				{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
-	// 				{ property: 'currentRatio', value: res.data.financialData.currentRatio.raw },
-	// 				{ property: 'quickRatio', value: res.data.financialData.quickRatio.raw },
-	// 				{ property: 'returnOnAssets', value: res.data.financialData.returnOnAssets.raw },
-	// 				{ property: 'returnOnEquity', value: res.data.financialData.returnOnEquity.raw },
-	// 				{ property: 'freeCashFlow', value: res.data.financialData.freeCashflow.raw }
-	// 			];
+				let gData = [
+					{ property: 'revenue', value: res.data.financialData.totalRevenue.raw },
+					{ property: 'grossProfit', value: res.data.financialData.grossMargins.raw },
+					{ property: 'operatingIncome', value: res.data.financialData.operatingMargins.raw },
+					{ property: 'netIncome', value: res.data.financialData.profitMargins.raw },
+					{ property: 'earningsGrowth', value: res.data.financialData.earningsGrowth.raw },
+					{ property: 'totalCash', value: res.data.financialData.totalCash.raw },
+					{ property: 'totalDebt', value: res.data.financialData.totalDebt.raw },
+					{ property: 'debtToEquity', value: res.data.financialData.debtToEquity.raw },
+					{ property: 'currentRatio', value: res.data.financialData.currentRatio.raw },
+					{ property: 'quickRatio', value: res.data.financialData.quickRatio.raw },
+					{ property: 'returnOnAssets', value: res.data.financialData.returnOnAssets.raw },
+					{ property: 'returnOnEquity', value: res.data.financialData.returnOnEquity.raw },
+					{ property: 'freeCashFlow', value: res.data.financialData.freeCashflow.raw }
+				];
 
-	// 			gData.forEach((item, i) => {
-	// 				item.letterGrade = GradingScale[item.property](item.value);
-	// 			});
+				gData.forEach((item, i) => {
+					item.letterGrade = GradingScale[item.property](item.value);
+				});
 
-	// 			gData.push({ finalGrade: GradingScale.finalGrade(gData) });
+				gData.push({ finalGrade: GradingScale.finalGrade(gData) });
 
-	// 			setSearchStock(data);
-	// 			setGradeData(gData);
-	// 			console.log('Grade Data:');
-	// 			console.log(gradeData);
-	// 		})
-	// 		.catch((err) => console.log(err));
-	// }, []);
+				setSearchStock(data);
+				setGradeData(gData);
+				console.log('Grade Data:');
+				console.log(gradeData);
+			})
+			.catch((err) => console.log(err));
+	}, []);
 
 	const handleSearchStock = (e) => {
 		e.preventDefault();
@@ -366,116 +366,270 @@ export default function Dashboard() {
 											</form>
 										</Grid>
 										<Grid item xs={12} md={6}>
-											<h1 style={{ paddingTop: '40px'}}>{searchStock.name} "{searchStock.symbol}" Final Grade:{' '}
-												{gradeData[13].finalGrade}</h1>
+											<h1 style={{ paddingTop: '40px' }}>
+												{searchStock.name} "{searchStock.symbol}" Final Grade:{' '}
+												{gradeData[13].finalGrade}
+											</h1>
 										</Grid>
 										<Grid item xs={12}>
 											<Paper className={classes.paper} style={{ color: '#43425D' }}>
-												<h1 style={{paddingLeft: '20px'}}>Income Statement</h1>
+												<h1 style={{ paddingLeft: '20px' }}>Income Statement</h1>
 												<div className={classes.items}>
-													<h3>Year: <span style={{ color: '#797A9F' }}>{searchStock.year}</span></h3>
+													<h3>
+														Year:{' '}
+														<span style={{ color: '#797A9F' }}>{searchStock.year}</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Revenue: <span style={{ color: '#797A9F' }}>{!searchStock.revenue ? 'No Value' : searchStock.revenue}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[0].letterGrade.letter}</span></h3>
+													<h3>
+														Revenue:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{!searchStock.revenue ? 'No Value' : searchStock.revenue}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[0].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Gross Profit: <span style={{ color: '#797A9F' }}>	{!searchStock.grossProfit ? (
-															'No Value'
-														) : (
-															searchStock.grossProfit
-														)}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[1].letterGrade.letter}</span></h3>
+													<h3>
+														Gross Profit:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{' '}
+															{!searchStock.grossProfit ? (
+																'No Value'
+															) : (
+																searchStock.grossProfit
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[1].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Operating Income: <span style={{ color: '#797A9F' }}>{!searchStock.operatingIncome ? (
-															'No Value'
-														) : (
-															searchStock.operatingIncome
-														)}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[2].letterGrade.letter}</span></h3>
+													<h3>
+														Operating Income:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{!searchStock.operatingIncome ? (
+																'No Value'
+															) : (
+																searchStock.operatingIncome
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[2].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Net Income: <span style={{ color: '#797A9F' }}>{!searchStock.netIncome ? 'No Value' : searchStock.netIncome}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[3].letterGrade.letter}</span></h3>
+													<h3>
+														Net Income:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{!searchStock.netIncome ? (
+																'No Value'
+															) : (
+																searchStock.netIncome
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[3].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Earnings Growth: <span style={{ color: '#797A9F' }}>Earnings Growth:{' '}
-														{!searchStock.earningsGrowth ? (
-															'No Value'
-														) : (
-															searchStock.earningsGrowth
-														)}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[4].letterGrade.letter}</span></h3>
+													<h3>
+														Earnings Growth:{' '}
+														<span style={{ color: '#797A9F' }}>
+															Earnings Growth:{' '}
+															{!searchStock.earningsGrowth ? (
+																'No Value'
+															) : (
+																searchStock.earningsGrowth
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[4].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 
-												<h1 style={{paddingLeft: '20px'}}>Balance Sheet</h1>
+												<h1 style={{ paddingLeft: '20px' }}>Balance Sheet</h1>
 
 												<div className={classes.items}>
-													<h3>Total Cash: <span style={{ color: '#797A9F' }}>{!searchStock.totalCash ? 'No Value' : searchStock.totalCash}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[5].letterGrade.letter}</span></h3>
+													<h3>
+														Total Cash:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{!searchStock.totalCash ? (
+																'No Value'
+															) : (
+																searchStock.totalCash
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[5].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Total Debit: <span style={{ color: '#797A9F' }}>{!searchStock.totalDebit ? 'No Value' : searchStock.totalDebit}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[6].letterGrade.letter}</span></h3>
+													<h3>
+														Total Debit:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{!searchStock.totalDebit ? (
+																'No Value'
+															) : (
+																searchStock.totalDebit
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[6].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Current Ratio: <span style={{ color: '#797A9F' }}>{!searchStock.currentRatio ? (
-															'No Value'
-														) : (
-															searchStock.currentRatio
-														)}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[8].letterGrade.letter}</span></h3>
+													<h3>
+														Current Ratio:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{!searchStock.currentRatio ? (
+																'No Value'
+															) : (
+																searchStock.currentRatio
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[8].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Quick Ratio: <span style={{ color: '#797A9F' }}>{!searchStock.quickRatio ? 'No Value' : searchStock.quickRatio}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[9].letterGrade.letter}</span></h3>
+													<h3>
+														Quick Ratio:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{!searchStock.quickRatio ? (
+																'No Value'
+															) : (
+																searchStock.quickRatio
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[9].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Return on Assets: <span style={{ color: '#797A9F' }}>	{!searchStock.returnOnAssets ? (
-															'No Value'
-														) : (
-															searchStock.returnOnAssets
-														)}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[10].letterGrade.letter}</span></h3>
+													<h3>
+														Return on Assets:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{' '}
+															{!searchStock.returnOnAssets ? (
+																'No Value'
+															) : (
+																searchStock.returnOnAssets
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[10].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Return on Equity: <span style={{ color: '#797A9F' }}>{!searchStock.returnOnEquity ? (
-															'No Value'
-														) : (
-															searchStock.returnOnEquity
-														)}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[11].letterGrade.letter}</span></h3>
+													<h3>
+														Return on Equity:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{!searchStock.returnOnEquity ? (
+																'No Value'
+															) : (
+																searchStock.returnOnEquity
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[11].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Debt/Equity: <span style={{ color: '#797A9F' }}>	{!searchStock.debtToEquity ? (
-															'No Value'
-														) : (
-															searchStock.debtToEquity
-														)}</span></h3>
+													<h3>
+														Debt/Equity:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{' '}
+															{!searchStock.debtToEquity ? (
+																'No Value'
+															) : (
+																searchStock.debtToEquity
+															)}
+														</span>
+													</h3>
 												</div>
 
-												<h1 style={{paddingLeft: '20px'}}>Cash Flow Statement</h1>
+												<h1 style={{ paddingLeft: '20px' }}>Cash Flow Statement</h1>
 
 												<div className={classes.items}>
-													<h3>Free Cash Flow: <span style={{ color: '#797A9F' }}>{!searchStock.freeCashFlow ? (
-															'No Value'
-														) : (
-															searchStock.freeCashFlow
-														)}</span></h3>
-													<h3>Grade: <span style={{ color: '#797A9F' }}>{gradeData[12].letterGrade.letter}</span></h3>
+													<h3>
+														Free Cash Flow:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{!searchStock.freeCashFlow ? (
+																'No Value'
+															) : (
+																searchStock.freeCashFlow
+															)}
+														</span>
+													</h3>
+													<h3>
+														Grade:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{gradeData[12].letterGrade.letter}
+														</span>
+													</h3>
 												</div>
 												<div className={classes.items}>
-													<h3>Operating Cash Flow: <span style={{ color: '#797A9F' }}>{!searchStock.operatingCashFlow ? (
-															'No Value'
-														) : (
-															searchStock.operatingCashFlow
-														)}</span></h3>
+													<h3>
+														Operating Cash Flow:{' '}
+														<span style={{ color: '#797A9F' }}>
+															{!searchStock.operatingCashFlow ? (
+																'No Value'
+															) : (
+																searchStock.operatingCashFlow
+															)}
+														</span>
+													</h3>
 												</div>
 											</Paper>
 											<Grid item xs={12} md={6}>
 												<Button
-													style={{ margin: '30px 0'}}
+													style={{ margin: '30px 0' }}
 													onClick={addToWatchListHandler}
 													className={classes.color}
 													variant="contained"
