@@ -213,17 +213,19 @@ export default {
 		}
 	},
 	finalGrade: function(arr) {
-		let value = arr.map((item) => item.letterGrade.value).reduce((a, b) => (a + b) / arr.length);
-		console.log(value);
-		if (value >= 0.37 && value <= 0.4) {
+		let sum = arr.map((item) => item.letterGrade.value).reduce((a, b) => a + b);
+		let length = arr.length;
+		let value = sum / length;
+
+		if (value >= 3.7 && value <= 4) {
 			return 'A';
-		} else if (value >= 0.3 && value <= 0.36) {
+		} else if (value >= 3 && value <= 3.6999) {
 			return 'B';
-		} else if (value >= 0.2 && value <= 0.29) {
+		} else if (value >= 2 && value <= 2.9999) {
 			return 'C';
-		} else if (value >= 0.1 && value <= 0.19) {
+		} else if (value >= 1 && value <= 1.9999) {
 			return 'D';
-		} else if (value < 0.1 || value === noValue) {
+		} else if (value < 1 || value === noValue) {
 			return 'F';
 		} else {
 			return 'Can not calculate value';

@@ -169,8 +169,8 @@ export default function Dashboard() {
 			.then((res) => {
 				// Trying to destructure this out a bit.
 				const { longName, symbol } = res.data;
-				console.log(longName, symbol);
-				console.log(res.data);
+				// console.log(longName, symbol);
+				// console.log(res.data);
 
 				let data = {
 					name: longName,
@@ -216,8 +216,8 @@ export default function Dashboard() {
 
 				setSearchStock(data);
 				setGradeData(gData);
-				console.log('Grade Data:');
-				console.log(gradeData);
+				// console.log('Grade Data:');
+				// console.log(gradeData);
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -232,8 +232,8 @@ export default function Dashboard() {
 				setGradeData(null);
 				// Trying to destructure this out a bit.
 				const { longName, symbol } = res.data;
-				console.log(longName, symbol);
-				console.log(res.data);
+				// console.log(longName, symbol);
+				// console.log(res.data);
 
 				let data = {
 					name: longName,
@@ -278,8 +278,8 @@ export default function Dashboard() {
 
 				setGradeData(gData);
 				setSearchStock(data);
-				console.log('Grade Data:');
-				console.log(gradeData);
+				// console.log('Grade Data:');
+				// console.log(gradeData);
 			})
 			.catch((err) => console.log(err));
 	};
