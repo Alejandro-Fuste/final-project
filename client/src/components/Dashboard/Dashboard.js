@@ -164,8 +164,9 @@ export default function Dashboard() {
 		setOpen(false);
 	};
 
-	const handleLogOut = () => {
-		logoutUser();
+	const handleLogOut = (i) => {
+		console.log('you clicked?')
+		logoutUser(i);
 	}
 
 	useEffect(() => {
@@ -325,7 +326,7 @@ export default function Dashboard() {
 						alt="Remy Sharp"
 						src="https://randomuser.me/api/portraits/men/90.jpg"
 					/>
-					<Link style={{ marginLeft: '15px', fontWeight: 'bold' }} onClick={handleLogOut}>Logout</Link>
+					<a href="#" style={{ marginLeft: '15px', fontWeight: 'bold' }} onClick={(i) => handleLogOut(i)}>Logout</a>
 				</Toolbar>
 			</AppBar>
 			<Drawer
