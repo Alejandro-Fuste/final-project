@@ -144,9 +144,9 @@ export default {
 			return { ...GRADE_B };
 		} else if (value >= 0.9 && value <= 1.0) {
 			return { ...GRADE_C };
-		} else if (value >= 0.79 && value <= 0.89) {
+		} else if (value >= 0.79999 && value <= 0.89999) {
 			return { ...GRADE_D };
-		} else if (value <= 0.78 || value === noValue) {
+		} else if (value <= 0.78999 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';
@@ -176,7 +176,7 @@ export default {
 			return { ...GRADE_C };
 		} else if (value >= 0.01 && value <= 0.029) {
 			return { ...GRADE_D };
-		} else if (value < 0.01 || value === noValue) {
+		} else if (value < 0.099 || value === noValue) {
 			return { ...GRADE_F };
 		} else {
 			return 'Can not calculate value';

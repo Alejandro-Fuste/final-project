@@ -3,6 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const logger = require('morgan');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+
+const users = require('./routes/users');
 
 // Requiring .dotenv file
 require('dotenv').config();
@@ -20,11 +24,19 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Bodyparser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 // Static directory
 app.use(express.static('public'));
 
 // Morgan middleware
 app.use(logger('dev'));
+
+// Passport middleware and Passport Config
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
@@ -33,6 +45,9 @@ if (process.env.NODE_ENV === 'production') {
 
 // API Routes
 require('./routes/api-routes.js')(app);
+
+// Routes
+app.use('/api/users', users);
 
 // Send every request to the React app
 // Define any API routes before this runs
@@ -46,11 +61,14 @@ app.get('*', function(req, res) {
 });
 
 //Starting database with mongoose
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/finalProject', {
-	useNewUrlParser: true,
-	useFindAndModify: false,
-	useUnifiedTopology: true
-});
+mongoose
+	.connect(process.env.MONGODB_URI || 'mongodb://localhost/finalProject', {
+		useNewUrlParser: true,
+		useFindAndModify: false,
+		useUnifiedTopology: true
+	})
+	.then(() => console.log('MongoDB connected'))
+	.catch((err) => console.log(err));
 
 //Start server to listen
 app.listen(PORT, () => console.log(`🌎 ==> API running on http://localhost:%s/`, PORT));
