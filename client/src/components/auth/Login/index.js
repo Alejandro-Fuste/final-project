@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
+import { loginUser } from '../../../actions/authActions';
 import classnames from 'classnames';
 
 import Container from 'react-bootstrap/Container';
@@ -10,6 +10,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Image from 'react-bootstrap/Image';
+
+import './style.css';
+import Logo from '../../../assets/logo 2.svg';
 
 class Login extends Component {
 	constructor() {
@@ -56,13 +60,16 @@ class Login extends Component {
 
 		return (
 			<Container fluid>
-				<Row style={{ marginTop: '4rem' }}>
-					<Col xs={6}>
-						<h3>Picture</h3>
-					</Col>
+				<Row style={{ height: '100vh' }}>
+					<Col xs={6} className="loginPic" />
 					<Col xs={6}>
 						<Form noValidate onSubmit={this.onSubmit}>
-							<div>
+							<div style={{ margin: '25vh 5vw' }}>
+								<div style={{ textAlign: 'center', marginBottom: '15px' }}>
+									<Image src={Logo} fluid />
+									<span className="logoName">zepcap</span>
+								</div>
+
 								<Form.Group controlId="formBasicEmail">
 									<Form.Label>Email address</Form.Label>
 									<Form.Control
@@ -111,7 +118,9 @@ class Login extends Component {
 										width: '150px',
 										borderRadius: '3px',
 										letterSpacing: '1.5px',
-										marginTop: '1rem'
+										marginTop: '1rem',
+										backgroundColor: '#A5A4BF',
+										borderColor: '#A5A4BF'
 									}}
 								>
 									Login
@@ -120,53 +129,6 @@ class Login extends Component {
 						</Form>
 					</Col>
 				</Row>
-
-				{/* <form noValidate onSubmit={this.onSubmit}>
-					<div className="input-field col s12">
-						<input
-							onChange={this.onChange}
-							value={this.state.email}
-							error={errors.email}
-							name="email"
-							type="email"
-							className={classnames('', { invalid: errors.email || errors.emailnotfound })}
-						/>
-						<label htmlFor="email">Email</label>
-						<span className="red-text">
-							{errors.email}
-							{errors.emailnotfound}
-						</span>
-					</div>
-					<div className="input-field col s12">
-						<input
-							onChange={this.onChange}
-							value={this.state.password}
-							error={errors.password}
-							name="password"
-							type="password"
-							className={classnames('', { invalid: errors.password || errors.passwordincorrect })}
-						/>
-						<label htmlFor="password">Password</label>
-						<span className="red-text">
-							{errors.password}
-							{errors.passwordincorrect}
-						</span>
-					</div>
-					<div className="col s12" style={{ paddingLeft: '11.250px' }}>
-						<button
-							className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-							style={{
-								width: '150px',
-								borderRadius: '3px',
-								letterSpacing: '1.5px',
-								marginTop: '1rem'
-							}}
-							type="submit"
-						>
-							Login
-						</button>
-					</div>
-				</form> */}
 			</Container>
 		);
 	}
