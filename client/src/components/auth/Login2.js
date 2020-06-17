@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -63,44 +63,40 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const Login = () => {
+const Login = (props) => {
 	const classes = useStyles();
 
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const [ errors, setErrors ] = useState({});
 
-	const componentDidMount = () => {
-		if (this.props.auth.isAuthenticated) this.props.history.push('/dashboard');
-	};
+	const emailRef = useRef();
 
-	const componentWillReceiveProps = (nextProps) => {
-		if (nextProps.auth.isAuthenticated) this.props.history.push('/dashboard');
+	useEffect((nextProps) => {
+		if (props.auth.isAuthenticated) props.history.push('/dashboard');
+
+		if (nextProps.auth.isAuthenticated) props.history.push('/dashboard');
 
 		if (nextProps.errors) {
-			this.setState({
-				errors: nextProps.errors
-			});
+			setErrors(nextProps.errors);
 		}
-	};
+	}, []);
 
-	const onChange = (e) => {
-		this.setState({ [e.target.name]: e.target.value });
-	};
+	// const onChange = (e) => {
+	// 	this.setState({ [e.target.name]: e.target.value });
+	// };
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 
 		const userData = {
-			email: this.state.email,
-			password: this.state.password
+			email: emailRef.current.value,
+			password
 		};
 
 		// console.log(userData);
-		this.props.loginUser(userData);
+		loginUser(userData);
 	};
-
-	const { errors } = this.state;
 
 	return (
 		<Grid container component="main" className={classes.root}>
@@ -115,7 +111,7 @@ const Login = () => {
 						Sign in
 					</Typography>
 
-					<form noValidate onSubmit={this.onSubmit}>
+					<form noValidate onSubmit={onSubmit}>
 						<TextField
 							variant="outlined"
 							margin="normal"
@@ -126,8 +122,9 @@ const Login = () => {
 							name="email"
 							autoComplete="email"
 							autoFocus
-							onChange={this.onChange}
-							value={this.state.email}
+							inputRef={emailRef}
+							// onChange={onChange}
+							value={email}
 							error={errors.email}
 							// type="email"
 							className={classnames('', { invalid: errors.email || errors.emailnotfound })}
