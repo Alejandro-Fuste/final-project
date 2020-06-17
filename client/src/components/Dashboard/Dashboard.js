@@ -33,6 +33,8 @@ import API from '../../utils/API';
 import GradingScale from '../../utils/gradingScale';
 import moment from 'moment';
 import Spinner from './Spinner';
+import { logoutUser} from "../../actions/authActions";
+
 
 function Copyright() {
 	return (
@@ -161,6 +163,10 @@ export default function Dashboard() {
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
+
+	const handleLogOut = () => {
+		logoutUser();
+	}
 
 	useEffect(() => {
 		API.getData({
@@ -319,6 +325,7 @@ export default function Dashboard() {
 						alt="Remy Sharp"
 						src="https://randomuser.me/api/portraits/men/90.jpg"
 					/>
+					<Link style={{ marginLeft: '15px', fontWeight: 'bold' }} onClick={handleLogOut}>Logout</Link>
 				</Toolbar>
 			</AppBar>
 			<Drawer
