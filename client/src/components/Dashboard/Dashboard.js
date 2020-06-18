@@ -164,9 +164,9 @@ export default function Dashboard() {
 		setOpen(false);
 	};
 
-	const handleLogOut = (i) => {
+	const handleLogOut = () => {
 		console.log('you clicked?')
-		logoutUser(i);
+		logoutUser(); // I think we need bring in the provider stuff in here too?
 	}
 
 	useEffect(() => {
