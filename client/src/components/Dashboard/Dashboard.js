@@ -33,6 +33,7 @@ import API from '../../utils/API';
 import GradingScale from '../../utils/gradingScale';
 import moment from 'moment';
 import Spinner from './Spinner';
+import logo from '../../assets/logo 2.svg';
 
 function Copyright() {
 	return (
@@ -306,7 +307,15 @@ export default function Dashboard() {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+					<img alt="logo" src={logo} style={{ marginRight: '10px' }} />
+					<Typography
+						component="h1"
+						variant="h6"
+						color="inherit"
+						noWrap
+						className={classes.title}
+						style={{ color: '#707070' }}
+					>
 						zepcap
 					</Typography>
 					<IconButton color="inherit">
