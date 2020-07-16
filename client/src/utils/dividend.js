@@ -4,9 +4,9 @@
 
 let principleInvestment, sharePrice, dividendRate;
 
-// Function with dividend amount equation
-
 export default {
+	// Function with dividend amount equation
+
 	dividendPayment: function(principleInvestment, sharePrice, dividendRate) {
 		let payment = principleInvestment / sharePrice * dividendRate;
 
