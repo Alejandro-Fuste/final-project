@@ -9,7 +9,7 @@ const AuthHeader = () => {
 };
 
 module.exports = {
-	getSummary: (query) => {
+	getOptionData: (query) => {
 		const { symbol = 'AAPL' } = query;
 
 		return axios.get(`${BASE_URI}${symbol}`, {

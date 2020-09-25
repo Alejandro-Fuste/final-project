@@ -4,6 +4,7 @@
 const path = require('path');
 const db = require('../models');
 const yahooFinanceAPI = require('../libs/yahooFinanceAPI');
+const optionDataAPI = require('../libs/optionChainAPI');
 
 module.exports = function(app) {
 	// Each of the below routes will do a different CRUD operation.
@@ -73,6 +74,18 @@ module.exports = function(app) {
 					.catch((err) => {
 						throw err;
 					});
+			})
+			.catch((err) => {
+				res.status(422).json(err);
+			});
+	});
+
+	app.get('/api/option-data', (req, res) => {
+		optionDataAPI
+			.getOptionData(req.query)
+			.then((data) => {
+				console.log(data);
+				res.json(data);
 			})
 			.catch((err) => {
 				res.status(422).json(err);
