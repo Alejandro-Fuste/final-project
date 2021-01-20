@@ -1,5 +1,8 @@
 # Final Project [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+<table><tr><td>
+<img src="./client/src/assets/sample.gif"  alt="finished gif" width="838" height="380"/>
+</table></tr></td>
 
 ## Description 
 
@@ -70,8 +73,4 @@ npm test
 
 If you have any questions about the repo, open an issue or contact [Alejandro Fuste](https://github.com/ZepCap) directly through GitHub.
 
-## Sample GIF
 
-<img src="./client/src/assets/sample.gif" alt="finished gif 1" style="border-radius: 16px" width="300" height="180"/>
-
----
