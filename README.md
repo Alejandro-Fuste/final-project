@@ -8,7 +8,7 @@ will then be able to use this information to compare and contrast potential inve
 
 ## User Story
 
-```
+```md
 
 AS A investor
 
