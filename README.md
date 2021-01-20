@@ -3,8 +3,8 @@
 
 ## Description 
 
-The purpose of this project is to create an invest-analyzer application. This application should have the ability to find financial statement, dividend, and options information of any publicly-traded company. With this information, a company can be given a grade based on their perfomance measurements/ratios. The 
-will then be able to use this information to compare and contrast potential investments. You can see the deployed site by [clicking on this link!](https://zep-final-project.herokuapp.com/dashboard).
+The purpose of this project is to create an invest-analyzer application. This application has the ability to find financial statement, dividend, and options information of any publicly-traded company. With this information, a company can be given a grade based on their perfomance measurements/ratios. The 
+will then be able to use this information to compare and contrast potential investments. The app uses <strong>Mongo</strong> database, <strong>Express.js</strong>, <strong>React.js</strong>, and <strong>Node.js</strong> <strong>(MERN)</strong>.  You can see the deployed site by [clicking on this link!](https://zep-final-project.herokuapp.com/dashboard).
 
 ## User Story
 
@@ -44,7 +44,7 @@ npm i
 
 ## Usage
 
-This application is a full-stack MERN application. 
+This application is a full-stack <strong>MERN</strong> application. 
 
 ## License
 
